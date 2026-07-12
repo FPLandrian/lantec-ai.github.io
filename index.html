@@ -3,39 +3,75 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>LanTec AI — Crewlytics</title>
+    <title>Crewlytics by LanTec AI — Crew, Equipment &amp; Jobsite Management</title>
     <meta
       name="description"
-      content="LanTec AI builds Crewlytics, the all-in-one platform for managing crews, equipment, and jobsites in the field."
+      content="Crewlytics is the all-in-one, mobile-first platform for managing crews, equipment, and jobsites in the field — with AI-powered voice entry. Built by LanTec AI."
     />
+    <meta name="theme-color" content="#0e1730" />
+    <link rel="canonical" href="https://lantec.ai/" />
+    <!-- Progressive enhancement flag: gates the scroll-reveal styles so content
+         is never hidden when JavaScript is unavailable. Set before first paint. -->
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
     <link rel="icon" type="image/png" href="assets/favicon.png" />
     <link rel="apple-touch-icon" href="assets/crewlytics-icon-512.png" />
 
     <!-- Open Graph / link preview -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="LanTec AI — Crewlytics" />
+    <meta property="og:site_name" content="LanTec AI" />
+    <meta property="og:title" content="Crewlytics by LanTec AI" />
     <meta
       property="og:description"
-      content="Crewlytics is the all-in-one platform for managing crews, equipment, and jobsites — built by LanTec AI."
+      content="The all-in-one, mobile-first platform for managing crews, equipment, and jobsites — with AI-powered voice entry."
     />
     <meta property="og:url" content="https://lantec.ai" />
     <meta property="og:image" content="https://lantec.ai/assets/crewlytics-icon-512.png" />
+    <meta name="twitter:card" content="summary_large_image" />
 
     <style>
+      /* ============================================================
+         Design tokens
+         ============================================================ */
       :root {
-        --navy-900: #14213d;
-        --navy-800: #1b2a52;
-        --navy-700: #2c3f73;
-        --blue-800: #1e3a8a;
+        /* Brand — navy / blue base */
+        --navy-950: #0a1024;
+        --navy-900: #0e1730;
+        --navy-800: #14213d;
+        --navy-700: #1b2a52;
         --blue-600: #2563eb;
-        --cyan: #00f2fe;
-        --cyan-soft: #4facfe;
+        --blue-500: #3b82f6;
+
+        /* Brand — accent pair (mirrors the app icon) */
+        --cyan-500: #06b6d4; /* readable on white */
+        --cyan-400: #22d3ee; /* bright, for dark bg */
         --coral: #ff512f;
-        --ink: #1f2937;
-        --muted: #6b7280;
-        --line: #e5e7eb;
+        --pink: #f5365c;
+
+        /* Neutrals */
+        --ink: #0f172a;
+        --slate: #334155;
+        --muted: #64748b;
+        --line: #e7eaf1;
+        --line-soft: #eef1f6;
         --panel: #ffffff;
-        --page: #f4f6fa;
+        --panel-2: #f8fafc;
+        --page: #ffffff;
+
+        /* Effects */
+        --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06),
+          0 1px 3px rgba(15, 23, 42, 0.05);
+        --shadow-md: 0 10px 30px -12px rgba(15, 23, 42, 0.18);
+        --shadow-lg: 0 30px 60px -20px rgba(15, 23, 42, 0.28);
+        --ring: 0 0 0 4px rgba(37, 99, 235, 0.16);
+
+        --radius: 16px;
+        --radius-lg: 22px;
+        --maxw: 1140px;
+
+        --grad-brand: linear-gradient(135deg, var(--cyan-500), var(--blue-600));
+        --grad-accent: linear-gradient(135deg, var(--cyan-400), var(--coral));
       }
 
       * {
@@ -44,16 +80,34 @@
 
       html {
         scroll-behavior: smooth;
+        -webkit-text-size-adjust: 100%;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
       }
 
       body {
         margin: 0;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-          Helvetica, Arial, sans-serif;
-        color: var(--ink);
+        font-family: "Inter", ui-sans-serif, system-ui, -apple-system,
+          BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        color: var(--slate);
         background: var(--page);
-        line-height: 1.6;
+        line-height: 1.65;
+        font-size: 17px;
         -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+      }
+
+      h1,
+      h2,
+      h3 {
+        color: var(--ink);
+        line-height: 1.12;
+        letter-spacing: -0.02em;
+        margin: 0;
+        font-weight: 800;
       }
 
       a {
@@ -64,250 +118,1695 @@
         text-decoration: underline;
       }
 
+      img {
+        max-width: 100%;
+      }
+
+      :focus-visible {
+        outline: none;
+        box-shadow: var(--ring);
+        border-radius: 8px;
+      }
+
       .wrap {
         width: 100%;
-        max-width: 1040px;
+        max-width: var(--maxw);
         margin: 0 auto;
         padding: 0 24px;
       }
 
-      /* ── Hero ───────────────────────────────────────────── */
-      .hero {
-        background: linear-gradient(135deg, var(--navy-900) 0%, var(--blue-800) 100%);
+      .skip-link {
+        position: absolute;
+        left: -9999px;
+        top: 0;
+        background: #fff;
+        color: var(--ink);
+        padding: 12px 18px;
+        border-radius: 10px;
+        z-index: 100;
+        box-shadow: var(--shadow-md);
+      }
+      .skip-link:focus {
+        left: 16px;
+        top: 16px;
+      }
+
+      /* ============================================================
+         Buttons
+         ============================================================ */
+      .btn {
+        --btn-py: 13px;
+        --btn-px: 24px;
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        font-weight: 650;
+        font-size: 0.98rem;
+        line-height: 1;
+        padding: var(--btn-py) var(--btn-px);
+        border-radius: 12px;
+        border: 1px solid transparent;
+        cursor: pointer;
+        white-space: nowrap;
+        transition: transform 0.14s ease, box-shadow 0.2s ease,
+          background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+      }
+      .btn:hover {
+        text-decoration: none;
+      }
+      .btn svg {
+        width: 18px;
+        height: 18px;
+      }
+
+      .btn-primary {
+        background: var(--grad-brand);
         color: #fff;
-        text-align: center;
-        padding: 72px 24px 88px;
+        box-shadow: 0 8px 20px -8px rgba(6, 182, 212, 0.65),
+          0 2px 6px rgba(37, 99, 235, 0.35);
+      }
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 14px 30px -10px rgba(6, 182, 212, 0.7),
+          0 4px 10px rgba(37, 99, 235, 0.4);
+      }
+
+      .btn-ghost {
+        background: rgba(255, 255, 255, 0.06);
+        color: #fff;
+        border-color: rgba(255, 255, 255, 0.28);
+        backdrop-filter: blur(6px);
+      }
+      .btn-ghost:hover {
+        background: rgba(255, 255, 255, 0.14);
+        border-color: rgba(255, 255, 255, 0.55);
+        transform: translateY(-2px);
+      }
+
+      .btn-light {
+        background: #fff;
+        color: var(--navy-800);
+        box-shadow: var(--shadow-sm);
+      }
+      .btn-light:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+      }
+
+      .btn-sm {
+        --btn-py: 10px;
+        --btn-px: 18px;
+        font-size: 0.92rem;
+      }
+
+      /* ============================================================
+         Navbar
+         ============================================================ */
+      .nav {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        transition: background 0.25s ease, box-shadow 0.25s ease,
+          border-color 0.25s ease;
+        background: rgba(255, 255, 255, 0);
+        border-bottom: 1px solid transparent;
+      }
+      .nav.scrolled {
+        background: rgba(255, 255, 255, 0.82);
+        backdrop-filter: saturate(180%) blur(14px);
+        -webkit-backdrop-filter: saturate(180%) blur(14px);
+        border-bottom-color: var(--line);
+        box-shadow: 0 1px 0 rgba(15, 23, 42, 0.02),
+          0 6px 24px -18px rgba(15, 23, 42, 0.3);
+      }
+      .nav-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 68px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 11px;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        font-size: 1.24rem;
+        color: #fff; /* nav sits over the dark hero at the top */
+      }
+      .brand:hover {
+        text-decoration: none;
+      }
+      .brand img {
+        width: 34px;
+        height: 34px;
+        border-radius: 9px;
+        box-shadow: 0 4px 12px -4px rgba(14, 23, 48, 0.5);
+      }
+      .brand .accent {
+        color: var(--cyan-400);
+      }
+      /* Once scrolled, the bar turns white → flip nav text to dark. */
+      .nav.scrolled .brand {
+        color: var(--ink);
+      }
+      .nav.scrolled .brand .accent {
+        color: var(--cyan-500);
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+      .nav-links a.link {
+        color: rgba(226, 232, 240, 0.85);
+        font-weight: 550;
+        font-size: 0.96rem;
+        padding: 9px 14px;
+        border-radius: 10px;
+        transition: color 0.15s ease, background 0.15s ease;
+      }
+      .nav-links a.link:hover {
+        text-decoration: none;
+        color: #fff;
+        background: rgba(255, 255, 255, 0.12);
+      }
+      .nav.scrolled .nav-links a.link {
+        color: var(--slate);
+      }
+      .nav.scrolled .nav-links a.link:hover {
+        color: var(--ink);
+        background: rgba(15, 23, 42, 0.045);
+      }
+      .nav-cta {
+        margin-left: 10px;
+      }
+
+      .nav-toggle {
+        display: none;
+        width: 44px;
+        height: 44px;
+        border: 1px solid rgba(255, 255, 255, 0.28);
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 11px;
+        cursor: pointer;
+        align-items: center;
+        justify-content: center;
+      }
+      .nav-toggle span,
+      .nav-toggle span::before,
+      .nav-toggle span::after {
+        content: "";
+        display: block;
+        width: 18px;
+        height: 2px;
+        background: #fff;
+        border-radius: 2px;
+        position: relative;
+        transition: transform 0.22s ease, opacity 0.22s ease;
+      }
+      /* Dark treatment when the bar is white (scrolled, or menu open on mobile). */
+      .nav.scrolled .nav-toggle,
+      .nav.open .nav-toggle {
+        border-color: var(--line);
+        background: rgba(255, 255, 255, 0.7);
+      }
+      .nav.scrolled .nav-toggle span,
+      .nav.scrolled .nav-toggle span::before,
+      .nav.scrolled .nav-toggle span::after,
+      .nav.open .nav-toggle span,
+      .nav.open .nav-toggle span::before,
+      .nav.open .nav-toggle span::after {
+        background: var(--ink);
+      }
+      .nav-toggle span::before {
+        position: absolute;
+        top: -6px;
+      }
+      .nav-toggle span::after {
+        position: absolute;
+        top: 6px;
+      }
+      .nav.open .nav-toggle span {
+        background: transparent;
+      }
+      .nav.open .nav-toggle span::before {
+        transform: translateY(6px) rotate(45deg);
+      }
+      .nav.open .nav-toggle span::after {
+        transform: translateY(-6px) rotate(-45deg);
+      }
+
+      /* ============================================================
+         Hero
+         ============================================================ */
+      .hero {
         position: relative;
         overflow: hidden;
+        color: #eaf0ff;
+        background: radial-gradient(
+            65% 55% at 12% 8%,
+            rgba(34, 211, 238, 0.2),
+            transparent 60%
+          ),
+          radial-gradient(
+            55% 55% at 92% 18%,
+            rgba(255, 81, 47, 0.16),
+            transparent 62%
+          ),
+          linear-gradient(165deg, #0d1630 0%, #14213d 55%, #1b2a52 100%);
+        margin-top: -68px; /* slide under transparent nav */
+        padding: 148px 0 96px;
       }
+      /* faint grid */
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: linear-gradient(
+            rgba(255, 255, 255, 0.045) 1px,
+            transparent 1px
+          ),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+        background-size: 46px 46px;
+        -webkit-mask-image: radial-gradient(
+          80% 70% at 50% 30%,
+          #000 0%,
+          transparent 80%
+        );
+        mask-image: radial-gradient(80% 70% at 50% 30%, #000 0%, transparent 80%);
+        pointer-events: none;
+      }
+      /* signature accent line */
       .hero::after {
         content: "";
         position: absolute;
         left: 0;
         right: 0;
         bottom: 0;
-        height: 5px;
-        background: linear-gradient(90deg, var(--cyan) 0%, var(--coral) 100%);
+        height: 4px;
+        background: linear-gradient(90deg, var(--cyan-400) 0%, var(--coral) 100%);
       }
-      .hero img.logo {
-        width: 100%;
-        max-width: 420px;
-        height: auto;
-        display: block;
-        margin: 0 auto 8px;
+      .hero .wrap {
+        position: relative;
+        z-index: 2;
       }
-      .hero p.lede {
-        font-size: 1.2rem;
-        color: #c7d2fe;
-        max-width: 620px;
-        margin: 12px auto 32px;
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: 56px;
+        align-items: center;
       }
 
-      .btn {
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        font-size: 0.82rem;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        color: #cdd8f5;
+        background: rgba(255, 255, 255, 0.07);
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        padding: 7px 14px 7px 10px;
+        border-radius: 999px;
+      }
+      .eyebrow .pip {
+        width: 20px;
+        height: 20px;
+        border-radius: 6px;
+        background: var(--grad-accent);
         display: inline-block;
-        background: #fff;
-        color: var(--navy-800);
+      }
+      .hero h1 {
+        color: #fff;
+        font-size: clamp(2.3rem, 5.2vw, 3.5rem);
+        margin: 22px 0 0;
+        letter-spacing: -0.03em;
+      }
+      .hero h1 .grad {
+        background: linear-gradient(100deg, #7ee9ff 0%, #b9c6ff 55%, #ffb4a3 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      .hero .lede {
+        font-size: clamp(1.05rem, 1.6vw, 1.22rem);
+        color: #bcc8ee;
+        max-width: 560px;
+        margin: 20px 0 0;
+      }
+      .hero-cta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        margin-top: 32px;
+      }
+      .hero-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        margin-top: 30px;
+        color: #aab6dd;
+        font-size: 0.9rem;
+      }
+      .hero-meta span {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .hero-meta svg {
+        width: 17px;
+        height: 17px;
+        color: var(--cyan-400);
+        flex: none;
+      }
+
+      /* ---- Hero product mockup ---- */
+      .hero-visual {
+        position: relative;
+        display: flex;
+        justify-content: center;
+      }
+      .hero-visual .halo {
+        position: absolute;
+        inset: -12% -6% -6% -6%;
+        background: radial-gradient(
+          50% 50% at 55% 45%,
+          rgba(56, 189, 248, 0.28),
+          transparent 70%
+        );
+        filter: blur(10px);
+        z-index: 0;
+      }
+      .phone {
+        position: relative;
+        z-index: 1;
+        width: 268px;
+        background: linear-gradient(160deg, #0b1226, #182644);
+        border-radius: 40px;
+        padding: 12px;
+        box-shadow: 0 40px 80px -30px rgba(4, 10, 30, 0.85),
+          0 0 0 1px rgba(255, 255, 255, 0.08),
+          inset 0 0 0 2px rgba(255, 255, 255, 0.04);
+      }
+      .phone .notch {
+        position: absolute;
+        top: 18px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 92px;
+        height: 20px;
+        background: #0b1226;
+        border-radius: 999px;
+        z-index: 3;
+      }
+      .screen {
+        background: linear-gradient(180deg, #f4f7fc 0%, #ffffff 22%);
+        border-radius: 30px;
+        padding: 30px 16px 18px;
+        overflow: hidden;
+      }
+      .app-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 14px;
+      }
+      .app-top .t {
+        font-size: 0.82rem;
+        font-weight: 800;
+        color: var(--ink);
+        letter-spacing: -0.01em;
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+      }
+      .app-top .t i {
+        width: 20px;
+        height: 20px;
+        border-radius: 6px;
+        background: linear-gradient(150deg, #14213d, #2563eb);
+        display: inline-block;
+      }
+      .app-top .av {
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--coral), var(--pink));
+        box-shadow: 0 0 0 2px #fff, 0 0 0 3px var(--line);
+      }
+      .clock-card {
+        background: linear-gradient(135deg, #14213d, #1e3a8a);
+        border-radius: 16px;
+        padding: 14px 15px;
+        color: #fff;
+        position: relative;
+        overflow: hidden;
+      }
+      .clock-card::after {
+        content: "";
+        position: absolute;
+        right: -30px;
+        top: -30px;
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(34, 211, 238, 0.4),
+          transparent 70%
+        );
+      }
+      .clock-card .lbl {
+        font-size: 0.62rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: #9fb4e6;
         font-weight: 700;
-        padding: 13px 28px;
-        border-radius: 8px;
-        transition: transform 0.12s ease, box-shadow 0.12s ease;
       }
-      .btn:hover {
-        text-decoration: none;
-        transform: translateY(-1px);
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+      .clock-card .big {
+        font-size: 1.5rem;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        margin-top: 2px;
       }
-
-      /* ── Sections ───────────────────────────────────────── */
-      section {
-        padding: 64px 0;
+      .clock-card .bar {
+        height: 6px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.16);
+        margin-top: 10px;
+        overflow: hidden;
       }
-      h2 {
-        font-size: 1.7rem;
-        text-align: center;
-        margin: 0 0 8px;
-        color: var(--navy-800);
+      .clock-card .bar i {
+        display: block;
+        height: 100%;
+        width: 68%;
+        border-radius: 999px;
+        background: linear-gradient(90deg, var(--cyan-400), var(--coral));
       }
-      .sub {
-        text-align: center;
+      .app-list {
+        margin-top: 12px;
+        display: grid;
+        gap: 8px;
+      }
+      .app-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background: #fff;
+        border: 1px solid var(--line-soft);
+        border-radius: 13px;
+        padding: 9px 10px;
+        box-shadow: 0 4px 14px -10px rgba(15, 23, 42, 0.4);
+      }
+      .app-row .ic {
+        width: 30px;
+        height: 30px;
+        border-radius: 9px;
+        flex: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+      }
+      .app-row .ic.c {
+        background: linear-gradient(135deg, var(--cyan-500), var(--blue-600));
+      }
+      .app-row .ic.r {
+        background: linear-gradient(135deg, var(--coral), var(--pink));
+      }
+      .app-row .ic svg {
+        width: 16px;
+        height: 16px;
+      }
+      .app-row .m {
+        flex: 1;
+        min-width: 0;
+      }
+      .app-row .m b {
+        display: block;
+        font-size: 0.76rem;
+        color: var(--ink);
+        line-height: 1.3;
+      }
+      .app-row .m span {
+        font-size: 0.66rem;
         color: var(--muted);
-        max-width: 640px;
-        margin: 0 auto 40px;
+      }
+      .app-row .badge {
+        font-size: 0.58rem;
+        font-weight: 700;
+        padding: 3px 8px;
+        border-radius: 999px;
+        letter-spacing: 0.02em;
+      }
+      .badge.ok {
+        color: #047857;
+        background: #d1fae5;
+      }
+      .badge.idle {
+        color: #b45309;
+        background: #fef3c7;
       }
 
+      /* floating cards */
+      .float {
+        position: absolute;
+        z-index: 2;
+        background: rgba(255, 255, 255, 0.94);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 255, 255, 0.7);
+        border-radius: 15px;
+        padding: 12px 14px;
+        box-shadow: var(--shadow-lg);
+        display: flex;
+        align-items: center;
+        gap: 11px;
+      }
+      .float .fi {
+        width: 34px;
+        height: 34px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        flex: none;
+      }
+      .float .fi svg {
+        width: 18px;
+        height: 18px;
+      }
+      .float .ft b {
+        display: block;
+        font-size: 0.82rem;
+        color: var(--ink);
+        line-height: 1.25;
+      }
+      .float .ft span {
+        font-size: 0.68rem;
+        color: var(--muted);
+      }
+      .float-voice {
+        left: -26px;
+        top: 30%;
+      }
+      .float-voice .fi {
+        background: linear-gradient(135deg, var(--coral), var(--pink));
+      }
+      .float-crew {
+        right: -22px;
+        bottom: 16%;
+      }
+      .float-crew .fi {
+        background: linear-gradient(135deg, var(--cyan-500), var(--blue-600));
+      }
+      .float-crew .stack {
+        display: flex;
+      }
+      .float-crew .stack i {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        margin-left: -7px;
+        border: 2px solid #fff;
+        background: #cbd5e1;
+      }
+      .float-crew .stack i:first-child {
+        margin-left: 0;
+        background: linear-gradient(135deg, #22d3ee, #2563eb);
+      }
+      .float-crew .stack i:nth-child(2) {
+        background: linear-gradient(135deg, #ff512f, #f5365c);
+      }
+      .float-crew .stack i:nth-child(3) {
+        background: linear-gradient(135deg, #34d399, #059669);
+      }
+
+      @media (prefers-reduced-motion: no-preference) {
+        .float-voice {
+          animation: floaty 6s ease-in-out infinite;
+        }
+        .float-crew {
+          animation: floaty 6s ease-in-out infinite 0.8s;
+        }
+        @keyframes floaty {
+          0%,
+          100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-9px);
+          }
+        }
+      }
+
+      /* ============================================================
+         Sections / general
+         ============================================================ */
+      section {
+        padding: 92px 0;
+      }
+      .section-head {
+        max-width: 660px;
+        margin: 0 auto 52px;
+        text-align: center;
+      }
+      .kicker {
+        display: inline-block;
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--cyan-500);
+        margin-bottom: 12px;
+      }
+      h2.title {
+        font-size: clamp(1.8rem, 3.4vw, 2.5rem);
+      }
+      .section-head p {
+        color: var(--muted);
+        margin: 14px 0 0;
+        font-size: 1.08rem;
+      }
+
+      /* ---- Feature cards ---- */
+      .features {
+        background: linear-gradient(180deg, #fff 0%, var(--panel-2) 100%);
+        border-top: 1px solid var(--line-soft);
+      }
       .grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-        gap: 20px;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 22px;
       }
       .card {
         background: var(--panel);
         border: 1px solid var(--line);
-        border-radius: 14px;
-        padding: 26px;
+        border-radius: var(--radius);
+        padding: 28px 26px;
+        position: relative;
+        transition: transform 0.2s ease, box-shadow 0.2s ease,
+          border-color 0.2s ease;
       }
-      .card .dot {
-        width: 44px;
-        height: 44px;
-        border-radius: 12px;
+      .card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-md);
+        border-color: #d7deea;
+      }
+      .card .tile {
+        width: 50px;
+        height: 50px;
+        border-radius: 14px;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 22px;
-        margin-bottom: 14px;
-        background: linear-gradient(135deg, var(--navy-800), var(--blue-600));
+        color: #fff;
+        margin-bottom: 18px;
+        box-shadow: 0 10px 22px -10px rgba(20, 33, 61, 0.55);
+      }
+      .card .tile svg {
+        width: 25px;
+        height: 25px;
+      }
+      .tile.t-cyan {
+        background: linear-gradient(135deg, #22d3ee, #2563eb);
+      }
+      .tile.t-blue {
+        background: linear-gradient(135deg, #3b82f6, #1e3a8a);
+      }
+      .tile.t-coral {
+        background: linear-gradient(135deg, #ff512f, #f5365c);
+      }
+      .tile.t-mix {
+        background: linear-gradient(135deg, #06b6d4, #ff512f);
       }
       .card h3 {
-        margin: 0 0 6px;
-        font-size: 1.1rem;
-        color: var(--navy-800);
+        font-size: 1.14rem;
+        font-weight: 750;
+        margin-bottom: 8px;
       }
       .card p {
         margin: 0;
         color: var(--muted);
-        font-size: 0.96rem;
+        font-size: 0.97rem;
       }
 
-      /* ── About / company ────────────────────────────────── */
-      .about {
-        background: #fff;
-        border-top: 1px solid var(--line);
-        border-bottom: 1px solid var(--line);
+      /* ---- Spotlight (voice) ---- */
+      .spotlight .wrap {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: center;
       }
+      .spotlight h2 {
+        font-size: clamp(1.7rem, 3vw, 2.3rem);
+        margin-top: 12px;
+      }
+      .spotlight p.body {
+        color: var(--slate);
+        font-size: 1.06rem;
+        margin: 16px 0 24px;
+      }
+      .checklist {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 28px;
+        display: grid;
+        gap: 12px;
+      }
+      .checklist li {
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+        color: var(--slate);
+      }
+      .checklist .ck {
+        flex: none;
+        width: 24px;
+        height: 24px;
+        border-radius: 8px;
+        background: rgba(6, 182, 212, 0.12);
+        color: var(--cyan-500);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .checklist .ck svg {
+        width: 15px;
+        height: 15px;
+      }
+
+      .voice-demo {
+        position: relative;
+        background: linear-gradient(160deg, #0d1630, #1b2a52);
+        border-radius: var(--radius-lg);
+        padding: 34px 30px;
+        color: #fff;
+        overflow: hidden;
+        box-shadow: var(--shadow-lg);
+      }
+      .voice-demo::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+            60% 60% at 20% 10%,
+            rgba(34, 211, 238, 0.22),
+            transparent 60%
+          ),
+          radial-gradient(
+            50% 50% at 90% 90%,
+            rgba(255, 81, 47, 0.2),
+            transparent 60%
+          );
+      }
+      .voice-demo > * {
+        position: relative;
+        z-index: 1;
+      }
+      .mic-row {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 20px;
+      }
+      .mic {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        flex: none;
+        background: linear-gradient(135deg, var(--coral), var(--pink));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        box-shadow: 0 0 0 8px rgba(255, 81, 47, 0.14),
+          0 12px 30px -8px rgba(255, 81, 47, 0.6);
+      }
+      .mic svg {
+        width: 26px;
+        height: 26px;
+      }
+      .wave {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        height: 34px;
+      }
+      .wave i {
+        width: 4px;
+        border-radius: 999px;
+        background: linear-gradient(180deg, var(--cyan-400), #6ea8ff);
+        height: 30%;
+      }
+      @media (prefers-reduced-motion: no-preference) {
+        .wave i {
+          animation: eq 1.1s ease-in-out infinite;
+        }
+        .wave i:nth-child(1) { animation-delay: 0s; }
+        .wave i:nth-child(2) { animation-delay: 0.1s; }
+        .wave i:nth-child(3) { animation-delay: 0.2s; }
+        .wave i:nth-child(4) { animation-delay: 0.3s; }
+        .wave i:nth-child(5) { animation-delay: 0.15s; }
+        .wave i:nth-child(6) { animation-delay: 0.25s; }
+        .wave i:nth-child(7) { animation-delay: 0.05s; }
+        .wave i:nth-child(8) { animation-delay: 0.2s; }
+        .wave i:nth-child(9) { animation-delay: 0.1s; }
+        .wave i:nth-child(10) { animation-delay: 0.3s; }
+        .wave i:nth-child(11) { animation-delay: 0.18s; }
+        .wave i:nth-child(12) { animation-delay: 0.08s; }
+        @keyframes eq {
+          0%, 100% { height: 22%; }
+          50% { height: 92%; }
+        }
+      }
+      .transcript {
+        font-size: 0.9rem;
+        color: #b9c6ef;
+        font-style: italic;
+      }
+      .voice-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin: 14px 8px 0 0;
+        padding: 8px 13px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: #eaf0ff;
+      }
+      .voice-chip svg {
+        width: 15px;
+        height: 15px;
+        color: #6ee7b7;
+      }
+
+      /* ---- How it works ---- */
+      .how {
+        background: var(--panel-2);
+        border-top: 1px solid var(--line-soft);
+        border-bottom: 1px solid var(--line-soft);
+      }
+      .steps {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        counter-reset: step;
+      }
+      .step {
+        position: relative;
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: 30px 26px 26px;
+      }
+      .step .num {
+        width: 42px;
+        height: 42px;
+        border-radius: 12px;
+        background: var(--navy-800);
+        color: #fff;
+        font-weight: 800;
+        font-size: 1.05rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 16px;
+        letter-spacing: -0.02em;
+      }
+      .step:nth-child(2) .num {
+        background: linear-gradient(135deg, var(--cyan-500), var(--blue-600));
+      }
+      .step:nth-child(3) .num {
+        background: linear-gradient(135deg, var(--coral), var(--pink));
+      }
+      .step h3 {
+        font-size: 1.12rem;
+        font-weight: 750;
+        margin-bottom: 8px;
+      }
+      .step p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.97rem;
+      }
+
+      /* ---- About ---- */
       .about .wrap {
-        max-width: 760px;
+        max-width: 820px;
         text-align: center;
+      }
+      .about .mark {
+        width: 68px;
+        height: 68px;
+        border-radius: 18px;
+        margin: 0 auto 24px;
+        box-shadow: var(--shadow-md);
+        display: block;
       }
       .about p {
+        color: var(--slate);
+        font-size: 1.16rem;
+        line-height: 1.7;
+      }
+      .about strong {
         color: var(--ink);
-        font-size: 1.05rem;
       }
 
-      /* ── Contact ────────────────────────────────────────── */
-      .contact {
-        text-align: center;
+      /* ---- CTA / contact band ---- */
+      .cta-band {
+        padding: 96px 0;
       }
-      .contact .email {
-        display: inline-block;
-        margin-top: 8px;
-        font-size: 1.25rem;
+      .cta-inner {
+        position: relative;
+        overflow: hidden;
+        text-align: center;
+        color: #fff;
+        border-radius: 28px;
+        padding: 64px 32px;
+        background: radial-gradient(
+            70% 120% at 15% 0%,
+            rgba(34, 211, 238, 0.28),
+            transparent 55%
+          ),
+          radial-gradient(
+            70% 120% at 90% 100%,
+            rgba(255, 81, 47, 0.26),
+            transparent 55%
+          ),
+          linear-gradient(150deg, #0d1630, #17223f 60%, #1b2a52);
+        box-shadow: var(--shadow-lg);
+      }
+      .cta-inner::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 4px;
+        background: linear-gradient(90deg, var(--cyan-400), var(--coral));
+      }
+      .cta-inner h2 {
+        color: #fff;
+        font-size: clamp(1.9rem, 3.6vw, 2.6rem);
+      }
+      .cta-inner p {
+        color: #c3cff0;
+        max-width: 560px;
+        margin: 16px auto 0;
+        font-size: 1.1rem;
+      }
+      .cta-actions {
+        margin-top: 32px;
+        display: flex;
+        gap: 14px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .cta-email {
+        margin-top: 22px;
+        font-size: 0.95rem;
+        color: #9fb0dc;
+      }
+      .cta-email a {
+        color: #eaf0ff;
+        font-weight: 600;
+      }
+
+      /* ---- Footer ---- */
+      footer {
+        background: var(--navy-950);
+        color: #93a3c9;
+        padding: 62px 0 34px;
+        font-size: 0.94rem;
+      }
+      .foot-grid {
+        display: grid;
+        grid-template-columns: 1.6fr 1fr 1fr 1fr;
+        gap: 40px;
+      }
+      .foot-brand .brand {
+        color: #fff;
+        margin-bottom: 14px;
+      }
+      .foot-brand .brand .accent {
+        color: var(--cyan-400);
+      }
+      .foot-brand p {
+        margin: 0;
+        max-width: 300px;
+        color: #8090b6;
+      }
+      .foot-col h4 {
+        color: #cdd7ee;
+        font-size: 0.82rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin: 4px 0 16px;
         font-weight: 700;
       }
+      .foot-col a {
+        display: block;
+        color: #93a3c9;
+        padding: 5px 0;
+        font-weight: 500;
+      }
+      .foot-col a:hover {
+        color: #fff;
+        text-decoration: none;
+      }
+      .foot-bottom {
+        margin-top: 44px;
+        padding-top: 24px;
+        border-top: 1px solid rgba(255, 255, 255, 0.09);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+        flex-wrap: wrap;
+        color: #7c8cb2;
+        font-size: 0.88rem;
+      }
+      .foot-bottom a {
+        color: #aeb9d6;
+      }
 
-      /* ── Footer ─────────────────────────────────────────── */
-      footer {
-        background: var(--navy-900);
-        color: #94a3b8;
-        text-align: center;
-        padding: 32px 24px;
-        font-size: 0.9rem;
+      /* ============================================================
+         Scroll reveal
+         ============================================================ */
+      /* Reveal is a progressive enhancement: only hide content once JS has
+         confirmed it can bring it back (html.js). No JS / no motion → visible. */
+      @media (prefers-reduced-motion: no-preference) {
+        html.js .reveal {
+          opacity: 0;
+          transform: translateY(22px);
+          transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+            transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        html.js .reveal.in {
+          opacity: 1;
+          transform: none;
+        }
+        html.js .reveal.d1 { transition-delay: 0.06s; }
+        html.js .reveal.d2 { transition-delay: 0.12s; }
+        html.js .reveal.d3 { transition-delay: 0.18s; }
       }
-      footer strong {
-        color: #e2e8f0;
+
+      /* ============================================================
+         Responsive
+         ============================================================ */
+      @media (max-width: 940px) {
+        .hero-grid {
+          grid-template-columns: 1fr;
+          gap: 60px;
+          text-align: center;
+        }
+        .hero .lede {
+          margin-left: auto;
+          margin-right: auto;
+        }
+        .hero-cta,
+        .hero-meta {
+          justify-content: center;
+        }
+        .hero-visual {
+          margin-top: 8px;
+        }
+        .spotlight .wrap {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+        .spotlight .txt {
+          text-align: center;
+        }
+        .checklist li {
+          text-align: left;
+        }
+        .steps {
+          grid-template-columns: 1fr;
+          max-width: 460px;
+          margin: 0 auto;
+        }
+        .foot-grid {
+          grid-template-columns: 1fr 1fr;
+          gap: 32px;
+        }
+        .foot-brand {
+          grid-column: 1 / -1;
+        }
       }
-      footer a {
-        color: #cbd5e1;
+
+      @media (max-width: 720px) {
+        .nav-links {
+          position: absolute;
+          top: calc(100% + 8px);
+          left: 16px;
+          right: 16px;
+          flex-direction: column;
+          align-items: stretch;
+          gap: 4px;
+          background: #fff;
+          border: 1px solid var(--line);
+          border-radius: 16px;
+          padding: 12px;
+          box-shadow: var(--shadow-lg);
+          opacity: 0;
+          transform: translateY(-8px) scale(0.99);
+          pointer-events: none;
+          transition: opacity 0.18s ease, transform 0.18s ease;
+        }
+        .nav.open .nav-links {
+          opacity: 1;
+          transform: none;
+          pointer-events: auto;
+        }
+        /* Dropdown panel is white → links are always dark on mobile. */
+        .nav-links a.link,
+        .nav.scrolled .nav-links a.link {
+          padding: 12px 14px;
+          font-size: 1rem;
+          color: var(--slate);
+        }
+        .nav-links a.link:hover {
+          color: var(--ink);
+          background: rgba(15, 23, 42, 0.045);
+        }
+        .nav-cta {
+          margin-left: 0;
+          margin-top: 6px;
+          justify-content: center;
+        }
+        .nav-toggle {
+          display: inline-flex;
+        }
+        .nav.scrolled,
+        .nav.open {
+          background: rgba(255, 255, 255, 0.92);
+          backdrop-filter: saturate(180%) blur(14px);
+        }
+        /* When the bar is white (menu open at the top), darken the brand too. */
+        .nav.open .brand {
+          color: var(--ink);
+        }
+        .nav.open .brand .accent {
+          color: var(--cyan-500);
+        }
       }
 
       @media (max-width: 560px) {
-        .hero {
-          padding: 52px 20px 64px;
+        body {
+          font-size: 16px;
         }
-        .hero p.lede {
-          font-size: 1.05rem;
+        section {
+          padding: 68px 0;
+        }
+        .hero {
+          padding: 128px 0 76px;
+        }
+        .float {
+          display: none;
+        }
+        .cta-inner {
+          padding: 48px 22px;
+        }
+        .cta-actions {
+          flex-direction: column;
+        }
+        .cta-actions .btn {
+          justify-content: center;
         }
       }
     </style>
   </head>
-  <body>
-    <!-- Hero -->
-    <header class="hero">
-      <div class="wrap">
-        <img
-          class="logo"
-          src="assets/crewlytics-logo.png"
-          alt="Crewlytics — Crew &amp; Equipment Management"
-        />
-        <p class="lede">
-          The all-in-one platform for managing crews, equipment, and jobsites —
-          built by <strong style="color:#fff;">LanTec&nbsp;AI</strong>.
-        </p>
-        <a class="btn" href="#contact">Get in touch</a>
-      </div>
-    </header>
+  <body id="top">
+    <a class="skip-link" href="#main">Skip to content</a>
 
-    <!-- Features -->
-    <section>
-      <div class="wrap">
-        <h2>Everything your jobsite needs</h2>
-        <p class="sub">
-          Crewlytics keeps field teams aligned with real-time visibility into
-          equipment, people, and schedules.
-        </p>
-        <div class="grid">
-          <div class="card">
-            <div class="dot">🏗️</div>
-            <h3>Equipment Management</h3>
-            <p>Track every piece of equipment across all your jobsites in real time.</p>
-          </div>
-          <div class="card">
-            <div class="dot">👷</div>
-            <h3>Crew Coordination</h3>
-            <p>Keep crews aligned with shared visibility into schedules and assignments.</p>
-          </div>
-          <div class="card">
-            <div class="dot">⏱️</div>
-            <h3>Time Tracking</h3>
-            <p>Clock in and out from any jobsite with accurate, reliable time records.</p>
-          </div>
-          <div class="card">
-            <div class="dot">🎙️</div>
-            <h3>Voice Entry</h3>
-            <p>Log equipment and materials hands-free with AI-powered voice input.</p>
+    <!-- ── Navbar ─────────────────────────────────────────── -->
+    <nav class="nav" id="nav">
+      <div class="wrap nav-inner">
+        <a class="brand" href="#top" aria-label="Crewlytics home">
+          <img
+            src="assets/crewlytics-icon-512.png"
+            alt=""
+            width="34"
+            height="34"
+          />
+          <span>Crew<span class="accent">lytics</span></span>
+        </a>
+
+        <div class="nav-links" id="navLinks">
+          <a class="link" href="#features">Features</a>
+          <a class="link" href="#how">How it works</a>
+          <a class="link" href="#about">About</a>
+          <a class="link" href="#contact">Contact</a>
+          <a class="btn btn-primary btn-sm nav-cta" href="#contact">
+            Get in touch
+          </a>
+        </div>
+
+        <button
+          class="nav-toggle"
+          id="navToggle"
+          aria-label="Toggle menu"
+          aria-expanded="false"
+          aria-controls="navLinks"
+        >
+          <span></span>
+        </button>
+      </div>
+    </nav>
+
+    <main id="main">
+      <!-- ── Hero ───────────────────────────────────────────── -->
+      <header class="hero">
+        <div class="wrap">
+          <div class="hero-grid">
+            <div class="hero-copy">
+              <span class="eyebrow reveal">
+                <span class="pip" aria-hidden="true"></span>
+                A LanTec&nbsp;AI product
+              </span>
+              <h1 class="reveal d1">
+                Run your crews and equipment
+                <span class="grad">from one field-ready app</span>
+              </h1>
+              <p class="lede reveal d2">
+                Crewlytics keeps field teams aligned with real-time visibility
+                into equipment, people, and schedules — with AI-powered voice
+                entry so logging happens hands-free on the jobsite.
+              </p>
+              <div class="hero-cta reveal d3">
+                <a class="btn btn-primary" href="#contact">
+                  Get in touch
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+                </a>
+                <a class="btn btn-ghost" href="#features">See what it does</a>
+              </div>
+              <div class="hero-meta reveal d3">
+                <span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 3 14h8l-1 8 10-12h-8z"/></svg>
+                  Real-time
+                </span>
+                <span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2.5"/><path d="M11 18h2"/></svg>
+                  Mobile-first
+                </span>
+                <span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v3M12 18v3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M3 12h3M18 12h3M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/><circle cx="12" cy="12" r="3.4"/></svg>
+                  AI-powered
+                </span>
+              </div>
+            </div>
+
+            <!-- Product mockup -->
+            <div class="hero-visual reveal d2" aria-hidden="true">
+              <div class="halo"></div>
+              <div class="phone">
+                <div class="notch"></div>
+                <div class="screen">
+                  <div class="app-top">
+                    <div class="t"><i></i> Crewlytics</div>
+                    <div class="av"></div>
+                  </div>
+
+                  <div class="clock-card">
+                    <div class="lbl">On the clock · Site A</div>
+                    <div class="big">3h 24m</div>
+                    <div class="bar"><i></i></div>
+                  </div>
+
+                  <div class="app-list">
+                    <div class="app-row">
+                      <div class="ic c">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h11v8H3z"/><path d="M14 10h4l3 3v2h-7z"/><circle cx="7" cy="17" r="1.6"/><circle cx="17.5" cy="17" r="1.6"/></svg>
+                      </div>
+                      <div class="m">
+                        <b>Excavator 320</b><span>Site A · in use</span>
+                      </div>
+                      <span class="badge ok">Active</span>
+                    </div>
+                    <div class="app-row">
+                      <div class="ic r">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 7v5c0 4.4 3.2 7.6 8 9 4.8-1.4 8-4.6 8-9V7z"/></svg>
+                      </div>
+                      <div class="m">
+                        <b>Generator #7</b><span>Yard · idle</span>
+                      </div>
+                      <span class="badge idle">Idle</span>
+                    </div>
+                    <div class="app-row">
+                      <div class="ic c">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>
+                      </div>
+                      <div class="m">
+                        <b>Crew B · Framing</b><span>5 on site</span>
+                      </div>
+                      <span class="badge ok">On&nbsp;time</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- floating cards -->
+              <div class="float float-voice">
+                <div class="fi">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M6 11a6 6 0 0 0 12 0"/><path d="M12 17v4"/><path d="M9 21h6"/></svg>
+                </div>
+                <div class="ft">
+                  <b>Voice logged</b>
+                  <span>“2 excavators, 1 pump”</span>
+                </div>
+              </div>
+
+              <div class="float float-crew">
+                <div class="stack">
+                  <i></i><i></i><i></i>
+                </div>
+                <div class="ft">
+                  <b>12 crew clocked in</b>
+                  <span>across 3 jobsites</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </header>
 
-    <!-- About LanTec AI -->
-    <section class="about">
-      <div class="wrap">
-        <h2>About LanTec&nbsp;AI</h2>
-        <p>
-          LanTec&nbsp;AI is a software company building practical, AI-powered tools
-          for the construction and field-services industry. Our flagship product,
-          <strong>Crewlytics</strong>, brings crew, equipment, and jobsite
-          management together in a single mobile-first platform.
-        </p>
-      </div>
-    </section>
+      <!-- ── Features ───────────────────────────────────────── -->
+      <section class="features" id="features">
+        <div class="wrap">
+          <div class="section-head reveal">
+            <span class="kicker">Features</span>
+            <h2 class="title">Everything your jobsite needs</h2>
+            <p>
+              One platform to keep equipment, people, and schedules in sync —
+              from the office to the field.
+            </p>
+          </div>
 
-    <!-- Contact -->
-    <section class="contact" id="contact">
-      <div class="wrap">
-        <h2>Contact &amp; Support</h2>
-        <p class="sub">
-          Questions about Crewlytics or LanTec&nbsp;AI? We'd love to hear from you.
-        </p>
-        <a class="email" href="mailto:support@lantec.ai">support@lantec.ai</a>
-      </div>
-    </section>
+          <div class="grid">
+            <article class="card reveal">
+              <div class="tile t-cyan">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h11v8H3z"/><path d="M14 10h4l3 3v2h-7z"/><circle cx="7" cy="17" r="1.7"/><circle cx="17.5" cy="17" r="1.7"/></svg>
+              </div>
+              <h3>Equipment Management</h3>
+              <p>
+                Track every asset across all your jobsites in real time — know
+                what's on site, in use, or sitting idle.
+              </p>
+            </article>
 
-    <!-- Footer -->
+            <article class="card reveal d1">
+              <div class="tile t-blue">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 20a5.8 5.8 0 0 1 11 0"/><path d="M16 5.5a3.2 3.2 0 0 1 0 6.2"/><path d="M18.5 20a5.8 5.8 0 0 0-3.2-5.2"/></svg>
+              </div>
+              <h3>Crew Coordination</h3>
+              <p>
+                Keep crews aligned with shared visibility into schedules and
+                assignments, so everyone knows where to be.
+              </p>
+            </article>
+
+            <article class="card reveal d2">
+              <div class="tile t-coral">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>
+              </div>
+              <h3>Time Tracking</h3>
+              <p>
+                Clock in and out from any jobsite with accurate, reliable time
+                records ready for payroll and reporting.
+              </p>
+            </article>
+
+            <article class="card reveal d3">
+              <div class="tile t-mix">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M6 11a6 6 0 0 0 12 0"/><path d="M12 17v4"/><path d="M9 21h6"/></svg>
+              </div>
+              <h3>Voice Entry</h3>
+              <p>
+                Log equipment and materials hands-free with AI-powered voice
+                input — no typing with gloves on.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Spotlight: Voice entry ─────────────────────────── -->
+      <section class="spotlight">
+        <div class="wrap">
+          <div class="txt reveal">
+            <span class="kicker">AI voice entry</span>
+            <h2>Log the jobsite by talking to it</h2>
+            <p class="body">
+              Field work doesn't wait for a keyboard. Tap once and speak —
+              Crewlytics turns what you say into structured records for
+              equipment, materials, and hours, so nothing gets lost between the
+              site and the office.
+            </p>
+            <ul class="checklist">
+              <li>
+                <span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg></span>
+                Hands-free logging built for gloves and noise
+              </li>
+              <li>
+                <span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg></span>
+                Turns plain speech into structured entries
+              </li>
+              <li>
+                <span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg></span>
+                Syncs to crew, equipment, and time records instantly
+              </li>
+            </ul>
+          </div>
+
+          <div class="voice-demo reveal d1" aria-hidden="true">
+            <div class="mic-row">
+              <div class="mic">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M6 11a6 6 0 0 0 12 0"/><path d="M12 17v4"/><path d="M9 21h6"/></svg>
+              </div>
+              <div class="wave">
+                <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+              </div>
+            </div>
+            <p class="transcript">
+              “Add two excavators and a concrete pump to Site A, crew B started
+              at 7.”
+            </p>
+            <span class="voice-chip">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg>
+              2× Excavator
+            </span>
+            <span class="voice-chip">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg>
+              1× Concrete pump
+            </span>
+            <span class="voice-chip">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg>
+              Crew B · 7:00 AM
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── How it works ───────────────────────────────────── -->
+      <section class="how" id="how">
+        <div class="wrap">
+          <div class="section-head reveal">
+            <span class="kicker">How it works</span>
+            <h2 class="title">Up and running in three steps</h2>
+            <p>No lengthy rollout — set it up once and your whole field team is in sync.</p>
+          </div>
+
+          <div class="steps">
+            <div class="step reveal">
+              <div class="num">1</div>
+              <h3>Add your crews &amp; equipment</h3>
+              <p>
+                Set up jobsites, assign crews, and register the equipment you
+                run — all in one place.
+              </p>
+            </div>
+            <div class="step reveal d1">
+              <div class="num">2</div>
+              <h3>Track from the field</h3>
+              <p>
+                Clock in, move equipment, and log materials right from the
+                jobsite — by tap or by voice.
+              </p>
+            </div>
+            <div class="step reveal d2">
+              <div class="num">3</div>
+              <h3>Stay in sync</h3>
+              <p>
+                Everyone sees the same real-time picture of people, gear, and
+                hours — no end-of-day paperwork.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── About ──────────────────────────────────────────── -->
+      <section class="about" id="about">
+        <div class="wrap reveal">
+          <img
+            class="mark"
+            src="assets/crewlytics-icon-512.png"
+            alt="Crewlytics icon"
+            width="68"
+            height="68"
+          />
+          <span class="kicker">About LanTec AI</span>
+          <h2 class="title" style="margin-bottom: 18px">
+            Practical AI for the field
+          </h2>
+          <p>
+            LanTec&nbsp;AI is a software company building practical, AI-powered
+            tools for the construction and field-services industry. Our flagship
+            product, <strong>Crewlytics</strong>, brings crew, equipment, and
+            jobsite management together in a single, mobile-first platform —
+            designed to work the way real jobsites do.
+          </p>
+        </div>
+      </section>
+
+      <!-- ── Contact / CTA ──────────────────────────────────── -->
+      <section class="cta-band" id="contact">
+        <div class="wrap">
+          <div class="cta-inner reveal">
+            <span class="kicker" style="color: #7ee9ff">Contact &amp; support</span>
+            <h2>Ready to get your jobsites organized?</h2>
+            <p>
+              Questions about Crewlytics or LanTec&nbsp;AI? We'd love to hear
+              from you — reach out and we'll get right back to you.
+            </p>
+            <div class="cta-actions">
+              <a class="btn btn-primary" href="mailto:support@lantec.ai">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6 8.5-6"/></svg>
+                Email our team
+              </a>
+              <a class="btn btn-ghost" href="#features">Explore features</a>
+            </div>
+            <p class="cta-email">
+              Or write to us directly at
+              <a href="mailto:support@lantec.ai">support@lantec.ai</a>
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ── Footer ─────────────────────────────────────────── -->
     <footer>
-      <p>
-        <strong>LanTec&nbsp;AI</strong> — makers of Crewlytics<br />
-        &copy; <span id="year">2026</span> LanTec&nbsp;AI. All rights reserved. &middot;
-        <a href="mailto:support@lantec.ai">support@lantec.ai</a>
-      </p>
+      <div class="wrap">
+        <div class="foot-grid">
+          <div class="foot-brand">
+            <a class="brand" href="#top">
+              <img src="assets/crewlytics-icon-512.png" alt="" width="34" height="34" />
+              <span>Crew<span class="accent">lytics</span></span>
+            </a>
+            <p>
+              The all-in-one, mobile-first platform for managing crews,
+              equipment, and jobsites in the field. Built by LanTec&nbsp;AI.
+            </p>
+          </div>
+
+          <div class="foot-col">
+            <h4>Product</h4>
+            <a href="#features">Features</a>
+            <a href="#how">How it works</a>
+            <a href="#features">Voice entry</a>
+          </div>
+
+          <div class="foot-col">
+            <h4>Company</h4>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+            <a href="privacy.html">Privacy Policy</a>
+          </div>
+
+          <div class="foot-col">
+            <h4>Get in touch</h4>
+            <a href="mailto:support@lantec.ai">support@lantec.ai</a>
+          </div>
+        </div>
+
+        <div class="foot-bottom">
+          <p style="margin: 0">
+            &copy; <span id="year">2026</span> LanTec&nbsp;AI. All rights
+            reserved.
+          </p>
+          <p style="margin: 0">
+            <a href="privacy.html">Privacy Policy</a> · Makers of
+            <strong style="color: #cdd7ee">Crewlytics</strong> ·
+            <a href="mailto:support@lantec.ai">support@lantec.ai</a>
+          </p>
+        </div>
+      </div>
     </footer>
 
     <script>
-      // Auto-updates the copyright year on every page load — e.g. it renders
-      // 2027 from Jan 1, 2027 onward. The hardcoded year above is only a
-      // fallback for the rare visitor with JavaScript disabled.
+      // Auto-update copyright year (fallback text above is for JS-disabled).
       var yearEl = document.getElementById("year");
       if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+
+      // Sticky nav — add a solid background once the page scrolls.
+      var nav = document.getElementById("nav");
+      var onScroll = function () {
+        if (window.scrollY > 8) nav.classList.add("scrolled");
+        else nav.classList.remove("scrolled");
+      };
+      onScroll();
+      window.addEventListener("scroll", onScroll, { passive: true });
+
+      // Mobile menu toggle.
+      var toggle = document.getElementById("navToggle");
+      var links = document.getElementById("navLinks");
+      toggle.addEventListener("click", function () {
+        var open = nav.classList.toggle("open");
+        toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      });
+      // Close the menu after tapping a link.
+      links.addEventListener("click", function (e) {
+        if (e.target.closest("a")) {
+          nav.classList.remove("open");
+          toggle.setAttribute("aria-expanded", "false");
+        }
+      });
+
+      // Scroll-reveal — respects reduced-motion (elements just stay visible).
+      var reduce =
+        window.matchMedia &&
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      var revealEls = document.querySelectorAll(".reveal");
+      if (!reduce && "IntersectionObserver" in window) {
+        var io = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("in");
+                io.unobserve(entry.target);
+              }
+            });
+          },
+          { rootMargin: "0px 0px -8% 0px", threshold: 0.08 }
+        );
+        revealEls.forEach(function (el) {
+          io.observe(el);
+        });
+      } else {
+        revealEls.forEach(function (el) {
+          el.classList.add("in");
+        });
+      }
     </script>
   </body>
 </html>
