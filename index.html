@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LanTec AI — Crewlytics</title>
+    <meta
+      name="description"
+      content="LanTec AI builds Crewlytics, the all-in-one platform for managing crews, equipment, and jobsites in the field."
+    />
+    <link rel="icon" type="image/png" href="assets/favicon.png" />
+    <link rel="apple-touch-icon" href="assets/crewlytics-icon-512.png" />
+
+    <!-- Open Graph / link preview -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="LanTec AI — Crewlytics" />
+    <meta
+      property="og:description"
+      content="Crewlytics is the all-in-one platform for managing crews, equipment, and jobsites — built by LanTec AI."
+    />
+    <meta property="og:url" content="https://lantec.ai" />
+    <meta property="og:image" content="https://lantec.ai/assets/crewlytics-icon-512.png" />
+
+    <style>
+      :root {
+        --navy-900: #14213d;
+        --navy-800: #1b2a52;
+        --navy-700: #2c3f73;
+        --blue-800: #1e3a8a;
+        --blue-600: #2563eb;
+        --cyan: #00f2fe;
+        --cyan-soft: #4facfe;
+        --coral: #ff512f;
+        --ink: #1f2937;
+        --muted: #6b7280;
+        --line: #e5e7eb;
+        --panel: #ffffff;
+        --page: #f4f6fa;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Helvetica, Arial, sans-serif;
+        color: var(--ink);
+        background: var(--page);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      a {
+        color: var(--blue-600);
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+
+      .wrap {
+        width: 100%;
+        max-width: 1040px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+
+      /* ── Hero ───────────────────────────────────────────── */
+      .hero {
+        background: linear-gradient(135deg, var(--navy-900) 0%, var(--blue-800) 100%);
+        color: #fff;
+        text-align: center;
+        padding: 72px 24px 88px;
+        position: relative;
+        overflow: hidden;
+      }
+      .hero::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 5px;
+        background: linear-gradient(90deg, var(--cyan) 0%, var(--coral) 100%);
+      }
+      .hero img.logo {
+        width: 100%;
+        max-width: 420px;
+        height: auto;
+        display: block;
+        margin: 0 auto 8px;
+      }
+      .hero p.lede {
+        font-size: 1.2rem;
+        color: #c7d2fe;
+        max-width: 620px;
+        margin: 12px auto 32px;
+      }
+
+      .btn {
+        display: inline-block;
+        background: #fff;
+        color: var(--navy-800);
+        font-weight: 700;
+        padding: 13px 28px;
+        border-radius: 8px;
+        transition: transform 0.12s ease, box-shadow 0.12s ease;
+      }
+      .btn:hover {
+        text-decoration: none;
+        transform: translateY(-1px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+      }
+
+      /* ── Sections ───────────────────────────────────────── */
+      section {
+        padding: 64px 0;
+      }
+      h2 {
+        font-size: 1.7rem;
+        text-align: center;
+        margin: 0 0 8px;
+        color: var(--navy-800);
+      }
+      .sub {
+        text-align: center;
+        color: var(--muted);
+        max-width: 640px;
+        margin: 0 auto 40px;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 20px;
+      }
+      .card {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 26px;
+      }
+      .card .dot {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+        margin-bottom: 14px;
+        background: linear-gradient(135deg, var(--navy-800), var(--blue-600));
+      }
+      .card h3 {
+        margin: 0 0 6px;
+        font-size: 1.1rem;
+        color: var(--navy-800);
+      }
+      .card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.96rem;
+      }
+
+      /* ── About / company ────────────────────────────────── */
+      .about {
+        background: #fff;
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+      }
+      .about .wrap {
+        max-width: 760px;
+        text-align: center;
+      }
+      .about p {
+        color: var(--ink);
+        font-size: 1.05rem;
+      }
+
+      /* ── Contact ────────────────────────────────────────── */
+      .contact {
+        text-align: center;
+      }
+      .contact .email {
+        display: inline-block;
+        margin-top: 8px;
+        font-size: 1.25rem;
+        font-weight: 700;
+      }
+
+      /* ── Footer ─────────────────────────────────────────── */
+      footer {
+        background: var(--navy-900);
+        color: #94a3b8;
+        text-align: center;
+        padding: 32px 24px;
+        font-size: 0.9rem;
+      }
+      footer strong {
+        color: #e2e8f0;
+      }
+      footer a {
+        color: #cbd5e1;
+      }
+
+      @media (max-width: 560px) {
+        .hero {
+          padding: 52px 20px 64px;
+        }
+        .hero p.lede {
+          font-size: 1.05rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Hero -->
+    <header class="hero">
+      <div class="wrap">
+        <img
+          class="logo"
+          src="assets/crewlytics-logo.png"
+          alt="Crewlytics — Crew &amp; Equipment Management"
+        />
+        <p class="lede">
+          The all-in-one platform for managing crews, equipment, and jobsites —
+          built by <strong style="color:#fff;">LanTec&nbsp;AI</strong>.
+        </p>
+        <a class="btn" href="#contact">Get in touch</a>
+      </div>
+    </header>
+
+    <!-- Features -->
+    <section>
+      <div class="wrap">
+        <h2>Everything your jobsite needs</h2>
+        <p class="sub">
+          Crewlytics keeps field teams aligned with real-time visibility into
+          equipment, people, and schedules.
+        </p>
+        <div class="grid">
+          <div class="card">
+            <div class="dot">🏗️</div>
+            <h3>Equipment Management</h3>
+            <p>Track every piece of equipment across all your jobsites in real time.</p>
+          </div>
+          <div class="card">
+            <div class="dot">👷</div>
+            <h3>Crew Coordination</h3>
+            <p>Keep crews aligned with shared visibility into schedules and assignments.</p>
+          </div>
+          <div class="card">
+            <div class="dot">⏱️</div>
+            <h3>Time Tracking</h3>
+            <p>Clock in and out from any jobsite with accurate, reliable time records.</p>
+          </div>
+          <div class="card">
+            <div class="dot">🎙️</div>
+            <h3>Voice Entry</h3>
+            <p>Log equipment and materials hands-free with AI-powered voice input.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About LanTec AI -->
+    <section class="about">
+      <div class="wrap">
+        <h2>About LanTec&nbsp;AI</h2>
+        <p>
+          LanTec&nbsp;AI is a software company building practical, AI-powered tools
+          for the construction and field-services industry. Our flagship product,
+          <strong>Crewlytics</strong>, brings crew, equipment, and jobsite
+          management together in a single mobile-first platform.
+        </p>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact" id="contact">
+      <div class="wrap">
+        <h2>Contact &amp; Support</h2>
+        <p class="sub">
+          Questions about Crewlytics or LanTec&nbsp;AI? We'd love to hear from you.
+        </p>
+        <a class="email" href="mailto:support@lantec.ai">support@lantec.ai</a>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p>
+        <strong>LanTec&nbsp;AI</strong> — makers of Crewlytics<br />
+        &copy; <span id="year">2026</span> LanTec&nbsp;AI. All rights reserved. &middot;
+        <a href="mailto:support@lantec.ai">support@lantec.ai</a>
+      </p>
+    </footer>
+
+    <script>
+      // Auto-updates the copyright year on every page load — e.g. it renders
+      // 2027 from Jan 1, 2027 onward. The hardcoded year above is only a
+      // fallback for the rare visitor with JavaScript disabled.
+      var yearEl = document.getElementById("year");
+      if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+    </script>
+  </body>
+</html>

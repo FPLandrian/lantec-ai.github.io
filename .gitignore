@@ -1,0 +1,7 @@
+# OS / editor cruft — a static site has no build output or dependencies.
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+.vscode/
+.idea/
