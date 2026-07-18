@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Crewlytics App Privacy Policy — LanTec AI</title>
+    <meta
+      name="description"
+      content="How the Crewlytics mobile app collects, uses, secures, and lets you delete your data. No ads, no analytics, no data sales."
+    />
+    <meta name="theme-color" content="#0e1730" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://lantec.ai/crewlytics-privacy.html" />
+    <link rel="icon" type="image/png" href="assets/favicon.png" />
+    <link rel="apple-touch-icon" href="assets/crewlytics-icon-512.png" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="LanTec AI" />
+    <meta property="og:title" content="Crewlytics App Privacy Policy — LanTec AI" />
+    <meta
+      property="og:description"
+      content="How the Crewlytics mobile app collects, uses, secures, and lets you delete your data. No ads, no analytics, no data sales."
+    />
+    <meta property="og:url" content="https://lantec.ai/crewlytics-privacy.html" />
+    <meta property="og:image" content="https://lantec.ai/assets/crewlytics-icon-512.png" />
+
+    <style>
+      /* ============================================================
+         Design tokens  (shared with index.html / privacy.html)
+         ============================================================ */
+      :root {
+        --navy-950: #0a1024;
+        --navy-900: #0e1730;
+        --navy-800: #14213d;
+        --navy-700: #1b2a52;
+        --blue-600: #2563eb;
+        --blue-500: #3b82f6;
+        --cyan-500: #06b6d4;
+        --cyan-400: #22d3ee;
+        --coral: #ff512f;
+        --pink: #f5365c;
+        --ink: #0f172a;
+        --slate: #334155;
+        --muted: #64748b;
+        --line: #e7eaf1;
+        --line-soft: #eef1f6;
+        --panel: #ffffff;
+        --panel-2: #f8fafc;
+        --page: #ffffff;
+        --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06),
+          0 1px 3px rgba(15, 23, 42, 0.05);
+        --shadow-md: 0 10px 30px -12px rgba(15, 23, 42, 0.18);
+        --shadow-lg: 0 30px 60px -20px rgba(15, 23, 42, 0.28);
+        --ring: 0 0 0 4px rgba(37, 99, 235, 0.16);
+        --radius: 16px;
+        --radius-lg: 22px;
+        --maxw: 1140px;
+        --grad-brand: linear-gradient(135deg, var(--cyan-500), var(--blue-600));
+        --grad-accent: linear-gradient(135deg, var(--cyan-400), var(--coral));
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+        -webkit-text-size-adjust: 100%;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+      }
+      body {
+        margin: 0;
+        font-family: "Inter", ui-sans-serif, system-ui, -apple-system,
+          BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        color: var(--slate);
+        background: var(--page);
+        line-height: 1.65;
+        font-size: 17px;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+      }
+      h1,
+      h2,
+      h3 {
+        color: var(--ink);
+        line-height: 1.15;
+        letter-spacing: -0.02em;
+        margin: 0;
+        font-weight: 800;
+      }
+      a {
+        color: var(--blue-600);
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      img {
+        max-width: 100%;
+      }
+      :focus-visible {
+        outline: none;
+        box-shadow: var(--ring);
+        border-radius: 8px;
+      }
+      .wrap {
+        width: 100%;
+        max-width: var(--maxw);
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+      .skip-link {
+        position: absolute;
+        left: -9999px;
+        top: 0;
+        background: #fff;
+        color: var(--ink);
+        padding: 12px 18px;
+        border-radius: 10px;
+        z-index: 100;
+        box-shadow: var(--shadow-md);
+      }
+      .skip-link:focus {
+        left: 16px;
+        top: 16px;
+      }
+
+      /* ============================================================
+         Buttons
+         ============================================================ */
+      .btn {
+        --btn-py: 13px;
+        --btn-px: 24px;
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        font-weight: 650;
+        font-size: 0.98rem;
+        line-height: 1;
+        padding: var(--btn-py) var(--btn-px);
+        border-radius: 12px;
+        border: 1px solid transparent;
+        cursor: pointer;
+        white-space: nowrap;
+        transition: transform 0.14s ease, box-shadow 0.2s ease,
+          background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+      }
+      .btn:hover {
+        text-decoration: none;
+      }
+      .btn svg {
+        width: 18px;
+        height: 18px;
+      }
+      .btn-primary {
+        background: var(--grad-brand);
+        color: #fff;
+        box-shadow: 0 8px 20px -8px rgba(6, 182, 212, 0.65),
+          0 2px 6px rgba(37, 99, 235, 0.35);
+      }
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 14px 30px -10px rgba(6, 182, 212, 0.7),
+          0 4px 10px rgba(37, 99, 235, 0.4);
+      }
+      .btn-sm {
+        --btn-py: 10px;
+        --btn-px: 18px;
+        font-size: 0.92rem;
+      }
+
+      /* ============================================================
+         Navbar  (same behavior as the homepage)
+         ============================================================ */
+      .nav {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        transition: background 0.25s ease, box-shadow 0.25s ease,
+          border-color 0.25s ease;
+        background: rgba(255, 255, 255, 0);
+        border-bottom: 1px solid transparent;
+      }
+      .nav.scrolled {
+        background: rgba(255, 255, 255, 0.82);
+        backdrop-filter: saturate(180%) blur(14px);
+        -webkit-backdrop-filter: saturate(180%) blur(14px);
+        border-bottom-color: var(--line);
+        box-shadow: 0 1px 0 rgba(15, 23, 42, 0.02),
+          0 6px 24px -18px rgba(15, 23, 42, 0.3);
+      }
+      .nav-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 68px;
+      }
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 11px;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        font-size: 1.24rem;
+        color: #fff;
+      }
+      .brand:hover {
+        text-decoration: none;
+      }
+      .brand img {
+        width: 34px;
+        height: 34px;
+        border-radius: 9px;
+        box-shadow: 0 4px 12px -4px rgba(14, 23, 48, 0.5);
+      }
+      .brand .accent {
+        color: var(--cyan-400);
+      }
+      .nav.scrolled .brand {
+        color: var(--ink);
+      }
+      .nav.scrolled .brand .accent {
+        color: var(--cyan-500);
+      }
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+      .nav-links a.link {
+        color: rgba(226, 232, 240, 0.85);
+        font-weight: 550;
+        font-size: 0.96rem;
+        padding: 9px 14px;
+        border-radius: 10px;
+        transition: color 0.15s ease, background 0.15s ease;
+      }
+      .nav-links a.link:hover {
+        text-decoration: none;
+        color: #fff;
+        background: rgba(255, 255, 255, 0.12);
+      }
+      .nav.scrolled .nav-links a.link {
+        color: var(--slate);
+      }
+      .nav.scrolled .nav-links a.link:hover {
+        color: var(--ink);
+        background: rgba(15, 23, 42, 0.045);
+      }
+      .nav-cta {
+        margin-left: 10px;
+      }
+      .nav-toggle {
+        display: none;
+        width: 44px;
+        height: 44px;
+        border: 1px solid rgba(255, 255, 255, 0.28);
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 11px;
+        cursor: pointer;
+        align-items: center;
+        justify-content: center;
+      }
+      .nav-toggle span,
+      .nav-toggle span::before,
+      .nav-toggle span::after {
+        content: "";
+        display: block;
+        width: 18px;
+        height: 2px;
+        background: #fff;
+        border-radius: 2px;
+        position: relative;
+        transition: transform 0.22s ease, opacity 0.22s ease;
+      }
+      .nav.scrolled .nav-toggle,
+      .nav.open .nav-toggle {
+        border-color: var(--line);
+        background: rgba(255, 255, 255, 0.7);
+      }
+      .nav.scrolled .nav-toggle span,
+      .nav.scrolled .nav-toggle span::before,
+      .nav.scrolled .nav-toggle span::after,
+      .nav.open .nav-toggle span,
+      .nav.open .nav-toggle span::before,
+      .nav.open .nav-toggle span::after {
+        background: var(--ink);
+      }
+      .nav-toggle span::before {
+        position: absolute;
+        top: -6px;
+      }
+      .nav-toggle span::after {
+        position: absolute;
+        top: 6px;
+      }
+      .nav.open .nav-toggle span {
+        background: transparent;
+      }
+      .nav.open .nav-toggle span::before {
+        transform: translateY(6px) rotate(45deg);
+      }
+      .nav.open .nav-toggle span::after {
+        transform: translateY(-6px) rotate(-45deg);
+      }
+
+      /* ============================================================
+         Page header  (compact navy band, matches the hero)
+         ============================================================ */
+      .page-hero {
+        position: relative;
+        overflow: hidden;
+        color: #eaf0ff;
+        background: radial-gradient(
+            65% 60% at 12% 6%,
+            rgba(34, 211, 238, 0.2),
+            transparent 60%
+          ),
+          radial-gradient(
+            55% 60% at 92% 20%,
+            rgba(255, 81, 47, 0.16),
+            transparent 62%
+          ),
+          linear-gradient(165deg, #0d1630 0%, #14213d 55%, #1b2a52 100%);
+        margin-top: -68px;
+        padding: 136px 0 60px;
+      }
+      .page-hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: linear-gradient(
+            rgba(255, 255, 255, 0.045) 1px,
+            transparent 1px
+          ),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+        background-size: 46px 46px;
+        -webkit-mask-image: radial-gradient(
+          80% 80% at 30% 20%,
+          #000 0%,
+          transparent 80%
+        );
+        mask-image: radial-gradient(80% 80% at 30% 20%, #000 0%, transparent 80%);
+        pointer-events: none;
+      }
+      .page-hero::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 4px;
+        background: linear-gradient(90deg, var(--cyan-400) 0%, var(--coral) 100%);
+      }
+      .page-hero .wrap {
+        position: relative;
+        z-index: 2;
+      }
+      .page-hero .kicker {
+        display: inline-block;
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--cyan-400);
+        margin-bottom: 12px;
+      }
+      .page-hero h1 {
+        color: #fff;
+        font-size: clamp(2rem, 4.6vw, 2.9rem);
+        letter-spacing: -0.03em;
+      }
+      .page-hero .updated {
+        margin: 14px 0 0;
+        color: #9fb0dc;
+        font-size: 0.95rem;
+      }
+
+      /* ============================================================
+         Legal content
+         ============================================================ */
+      .legal {
+        padding: 60px 0 88px;
+        background: #fff;
+      }
+      .legal .wrap {
+        max-width: 780px;
+      }
+      .legal .intro {
+        font-size: 1.12rem;
+        color: var(--slate);
+        margin: 0 0 8px;
+      }
+      .callout {
+        background: var(--panel-2);
+        border: 1px solid var(--line);
+        border-left: 4px solid var(--cyan-500);
+        border-radius: 12px;
+        padding: 18px 22px;
+        margin: 24px 0 8px;
+        color: var(--ink);
+      }
+      .callout strong {
+        color: var(--ink);
+      }
+      .callout.warn {
+        border-left-color: var(--coral);
+      }
+      .legal h2 {
+        font-size: 1.32rem;
+        font-weight: 750;
+        color: var(--ink);
+        margin: 44px 0 12px;
+        scroll-margin-top: 90px;
+      }
+      .legal h2 .n {
+        color: var(--cyan-500);
+        font-variant-numeric: tabular-nums;
+        margin-right: 8px;
+      }
+      .legal h3 {
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: var(--ink);
+        margin: 26px 0 8px;
+      }
+      .legal p {
+        margin: 0 0 15px;
+        color: var(--slate);
+      }
+      .legal ul {
+        margin: 0 0 16px;
+        padding-left: 4px;
+        list-style: none;
+      }
+      .legal li {
+        position: relative;
+        padding-left: 26px;
+        margin-bottom: 11px;
+        color: var(--slate);
+      }
+      .legal li::before {
+        content: "";
+        position: absolute;
+        left: 4px;
+        top: 11px;
+        width: 7px;
+        height: 7px;
+        border-radius: 2px;
+        background: var(--grad-brand);
+      }
+      .legal .wrap a {
+        color: var(--blue-600);
+        font-weight: 550;
+        text-decoration: underline;
+        text-underline-offset: 2px;
+      }
+      .legal hr {
+        border: none;
+        border-top: 1px solid var(--line);
+        margin: 40px 0 0;
+      }
+      .legal .backlink {
+        margin-top: 40px;
+      }
+
+      /* ============================================================
+         Footer  (shared with index.html)
+         ============================================================ */
+      footer {
+        background: var(--navy-950);
+        color: #93a3c9;
+        padding: 62px 0 34px;
+        font-size: 0.94rem;
+      }
+      .foot-grid {
+        display: grid;
+        grid-template-columns: 1.6fr 1fr 1fr 1fr;
+        gap: 40px;
+      }
+      .foot-brand .brand {
+        color: #fff;
+        margin-bottom: 14px;
+      }
+      .foot-brand .brand .accent {
+        color: var(--cyan-400);
+      }
+      .foot-brand p {
+        margin: 0;
+        max-width: 300px;
+        color: #8090b6;
+      }
+      .foot-col h4 {
+        color: #cdd7ee;
+        font-size: 0.82rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin: 4px 0 16px;
+        font-weight: 700;
+      }
+      .foot-col a {
+        display: block;
+        color: #93a3c9;
+        padding: 5px 0;
+        font-weight: 500;
+      }
+      .foot-col a:hover {
+        color: #fff;
+        text-decoration: none;
+      }
+      .foot-bottom {
+        margin-top: 44px;
+        padding-top: 24px;
+        border-top: 1px solid rgba(255, 255, 255, 0.09);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+        flex-wrap: wrap;
+        color: #7c8cb2;
+        font-size: 0.88rem;
+      }
+      .foot-bottom a {
+        color: #aeb9d6;
+      }
+
+      /* ============================================================
+         Responsive
+         ============================================================ */
+      @media (max-width: 940px) {
+        .foot-grid {
+          grid-template-columns: 1fr 1fr;
+          gap: 32px;
+        }
+        .foot-brand {
+          grid-column: 1 / -1;
+        }
+      }
+      @media (max-width: 720px) {
+        .nav-links {
+          position: absolute;
+          top: calc(100% + 8px);
+          left: 16px;
+          right: 16px;
+          flex-direction: column;
+          align-items: stretch;
+          gap: 4px;
+          background: #fff;
+          border: 1px solid var(--line);
+          border-radius: 16px;
+          padding: 12px;
+          box-shadow: var(--shadow-lg);
+          opacity: 0;
+          transform: translateY(-8px) scale(0.99);
+          pointer-events: none;
+          transition: opacity 0.18s ease, transform 0.18s ease;
+        }
+        .nav.open .nav-links {
+          opacity: 1;
+          transform: none;
+          pointer-events: auto;
+        }
+        .nav-links a.link,
+        .nav.scrolled .nav-links a.link {
+          padding: 12px 14px;
+          font-size: 1rem;
+          color: var(--slate);
+        }
+        .nav-links a.link:hover {
+          color: var(--ink);
+          background: rgba(15, 23, 42, 0.045);
+        }
+        .nav-cta {
+          margin-left: 0;
+          margin-top: 6px;
+          justify-content: center;
+        }
+        .nav-toggle {
+          display: inline-flex;
+        }
+        .nav.scrolled,
+        .nav.open {
+          background: rgba(255, 255, 255, 0.92);
+          backdrop-filter: saturate(180%) blur(14px);
+        }
+        .nav.open .brand {
+          color: var(--ink);
+        }
+        .nav.open .brand .accent {
+          color: var(--cyan-500);
+        }
+      }
+      @media (max-width: 560px) {
+        body {
+          font-size: 16px;
+        }
+        .page-hero {
+          padding: 112px 0 46px;
+        }
+        .legal {
+          padding: 44px 0 64px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <!-- ── Navbar ─────────────────────────────────────────── -->
+    <nav class="nav" id="nav">
+      <div class="wrap nav-inner">
+        <a class="brand" href="index.html" aria-label="Crewlytics home">
+          <img src="assets/crewlytics-icon-512.png" alt="" width="34" height="34" />
+          <span>Crew<span class="accent">lytics</span></span>
+        </a>
+
+        <div class="nav-links" id="navLinks">
+          <a class="link" href="index.html#features">Features</a>
+          <a class="link" href="index.html#how">How it works</a>
+          <a class="link" href="index.html#about">About</a>
+          <a class="link" href="index.html#contact">Contact</a>
+          <a class="btn btn-primary btn-sm nav-cta" href="index.html#contact">
+            Get in touch
+          </a>
+        </div>
+
+        <button
+          class="nav-toggle"
+          id="navToggle"
+          aria-label="Toggle menu"
+          aria-expanded="false"
+          aria-controls="navLinks"
+        >
+          <span></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- ── Page header ────────────────────────────────────── -->
+    <header class="page-hero">
+      <div class="wrap">
+        <span class="kicker">Legal</span>
+        <h1>Crewlytics App Privacy Policy</h1>
+        <p class="updated">Last updated: July&nbsp;17,&nbsp;2026</p>
+      </div>
+    </header>
+
+    <!-- ── Policy content ─────────────────────────────────── -->
+    <main class="legal" id="main">
+      <div class="wrap">
+        <p class="intro">
+          This Privacy Policy explains how LanTec&nbsp;AI (&ldquo;we&rdquo;,
+          &ldquo;us&rdquo;, or &ldquo;our&rdquo;) collects, uses, shares, and
+          protects information in the <strong>Crewlytics</strong> mobile
+          application (the &ldquo;App&rdquo;) — a workforce, equipment, and
+          jobsite management tool for construction teams.
+        </p>
+
+        <div class="callout">
+          <strong>In short:</strong> we collect only what the App needs to work —
+          your profile, clock-in/out location, photos, voice notes, and chat
+          messages. We store it securely, encrypt it in transit, and
+          <strong>never</strong> sell it, show you ads, or track you across other
+          apps or the web. You can delete your account and personal data at any
+          time, from inside the App or by
+          <a href="delete-account.html">requesting deletion online</a>.
+        </div>
+
+        <h2><span class="n">1.</span>Which product this covers</h2>
+        <p>
+          This Policy applies to the <strong>Crewlytics mobile app</strong> for
+          iOS and Android. Our marketing website at
+          <a href="https://lantec.ai">lantec.ai</a> is covered by a
+          <a href="privacy.html">separate website privacy policy</a>. Crewlytics
+          is intended for use by businesses and their staff; you typically access
+          it through an account created or approved by your employer.
+        </p>
+
+        <h2><span class="n">2.</span>Information we collect</h2>
+        <p>We collect the following, only to operate the App for you and your company:</p>
+        <ul>
+          <li>
+            <strong>Account &amp; profile information</strong> — your first and
+            last name, email address, phone number, the company you belong to,
+            and your assigned role. You provide these at sign-up and can edit them
+            in your profile.
+          </li>
+          <li>
+            <strong>Precise location</strong> — when you clock in or clock out of
+            a shift, the App can record your device's GPS coordinates and a
+            derived street/city address to verify where the shift started or
+            ended. Location is <strong>optional</strong>: if you decline the
+            permission, you can still clock in and out; we simply record no
+            coordinates.
+          </li>
+          <li>
+            <strong>Photos</strong> — images you capture or select to attach to
+            equipment records, time entries, or chat messages.
+          </li>
+          <li>
+            <strong>Voice recordings</strong> — audio you record for the
+            voice-based equipment-entry feature, which is transcribed into an
+            equipment record.
+          </li>
+          <li>
+            <strong>Messages</strong> — the content of messages and attachments
+            you send in the App's chat.
+          </li>
+          <li>
+            <strong>Push notification token</strong> — a device identifier used to
+            deliver notifications (for example, new chat messages). You can turn
+            push notifications off in your profile.
+          </li>
+          <li>
+            <strong>Work records you create</strong> — time entries, breaks,
+            time-off and time-edit requests, equipment records, jobsite data, and
+            related notes.
+          </li>
+        </ul>
+        <p>
+          We do <strong>not</strong> collect data through advertising networks,
+          analytics SDKs, crash-reporting SDKs, or social-media trackers — the App
+          contains none of these.
+        </p>
+
+        <h2><span class="n">3.</span>How we use information</h2>
+        <p>We use the information above to:</p>
+        <ul>
+          <li>provide and operate the App's features (time tracking, equipment management, messaging, notifications);</li>
+          <li>create and manage your account and your company's workspace;</li>
+          <li>verify shift clock-in/out locations for your employer's records;</li>
+          <li>keep the App secure and prevent misuse; and</li>
+          <li>meet legal, payroll, and record-keeping obligations.</li>
+        </ul>
+        <p>
+          We do not use your information for advertising, and we do not sell it or
+          use it for automated profiling unrelated to the App's functionality.
+        </p>
+
+        <h2><span class="n">4.</span>How we share information</h2>
+        <p>
+          We do not sell, rent, or trade your personal information. We share it
+          only with service providers who process it <em>on our behalf</em> to run
+          the App, and only as needed:
+        </p>
+        <ul>
+          <li>
+            <strong>Microsoft Azure</strong> — cloud hosting and storage for the
+            App's database and files (including photos and voice recordings). Data
+            is hosted in the United States.
+          </li>
+          <li>
+            <strong>Microsoft Azure AI Speech</strong> — transcribes your voice
+            recordings into text for the voice-entry feature. Azure processes the
+            audio on our behalf and does not use it to train its own models.
+          </li>
+          <li>
+            <strong>Expo and Google Firebase Cloud Messaging (FCM)</strong> —
+            deliver push notifications to your device. The notification is routed
+            through these services to reach your phone.
+          </li>
+          <li>
+            <strong>Your company</strong> — Crewlytics is a workplace tool, so the
+            company that operates your workspace (and its administrators) can see
+            the data you create within it, such as your time entries, location at
+            clock-in/out, equipment records, and messages.
+          </li>
+          <li>
+            <strong>Legal requirements</strong> — where required by law, or to
+            protect the rights, safety, or property of LanTec&nbsp;AI or others.
+          </li>
+        </ul>
+
+        <h2><span class="n">5.</span>Data security</h2>
+        <p>
+          All data sent between the App and our servers is encrypted in transit
+          using HTTPS/TLS. Photos and voice recordings are stored in private cloud
+          storage and served only to authorized users. The App also offers an
+          optional biometric lock (Face&nbsp;ID, Touch&nbsp;ID, or your device
+          passcode) to protect access on your device.
+        </p>
+
+        <h2><span class="n">6.</span>Data retention</h2>
+        <p>
+          We keep your information for as long as your account is active and as
+          needed to provide the App. When you delete your account (see below), we
+          permanently remove your personal information and personal files.
+        </p>
+        <p>
+          For legal, payroll, and record-keeping reasons, your employer may need
+          to retain certain <strong>work records</strong> — for example, time
+          entries and audit history. Where we retain such records after an account
+          deletion, we <strong>anonymize</strong> them so they are no longer
+          linked to your name, email, or phone number.
+        </p>
+
+        <h2><span class="n">7.</span>Deleting your account and data</h2>
+        <p>You can request deletion of your account and personal data in two ways:</p>
+        <ul>
+          <li>
+            <strong>In the App</strong> — go to <em>Profile &rarr; Delete
+            account</em> and confirm. You'll be asked to confirm twice, because
+            this action is permanent.
+          </li>
+          <li>
+            <strong>Online</strong> — visit
+            <a href="delete-account.html">lantec.ai/delete-account.html</a> to
+            request deletion without needing the App.
+          </li>
+        </ul>
+        <p>When you delete your account, we:</p>
+        <ul>
+          <li>permanently delete your profile details (name, email, phone) by anonymizing them;</li>
+          <li>delete your voice recordings and their stored audio files;</li>
+          <li>remove your registered notification devices; and</li>
+          <li>revoke your access and sign you out of all sessions.</li>
+        </ul>
+        <div class="callout warn">
+          <strong>Account deletion is permanent and is different from leaving a
+          company.</strong> If you simply leave or switch companies, your account
+          is deactivated but your data is retained so it can be restored if you
+          return. Deleting your account erases your personal data for good — if you
+          come back later, you start over with a new account. If you are the
+          <strong>owner</strong> of a company workspace, you must transfer
+          ownership (or contact us) before your account can be deleted, so your
+          company is not left without an owner.
+        </div>
+
+        <h2><span class="n">8.</span>Your choices and rights</h2>
+        <p>
+          You can view and edit your profile in the App at any time, turn location
+          and push notifications on or off, and delete your account as described
+          above. Depending on where you live, you may have additional rights to
+          access, correct, export, or delete personal information we hold about
+          you. To exercise any of these rights, email us at
+          <a href="mailto:support@lantec.ai">support@lantec.ai</a>.
+        </p>
+
+        <h2><span class="n">9.</span>Children's privacy</h2>
+        <p>
+          Crewlytics is a workplace application intended for adults (18+) and is
+          not directed to children. We do not knowingly collect personal
+          information from children.
+        </p>
+
+        <h2><span class="n">10.</span>Changes to this Policy</h2>
+        <p>
+          We may update this Privacy Policy from time to time. When we do, we will
+          revise the &ldquo;Last updated&rdquo; date at the top of this page, and
+          any significant changes will be reflected here.
+        </p>
+
+        <h2><span class="n">11.</span>Contact us</h2>
+        <p>
+          Questions about this Privacy Policy or your information in the Crewlytics
+          app? Email us at
+          <a href="mailto:support@lantec.ai">support@lantec.ai</a>.
+        </p>
+
+        <hr />
+        <p class="backlink">
+          <a href="index.html">&larr; Back to lantec.ai</a>
+        </p>
+      </div>
+    </main>
+
+    <!-- ── Footer ─────────────────────────────────────────── -->
+    <footer>
+      <div class="wrap">
+        <div class="foot-grid">
+          <div class="foot-brand">
+            <a class="brand" href="index.html">
+              <img src="assets/crewlytics-icon-512.png" alt="" width="34" height="34" />
+              <span>Crew<span class="accent">lytics</span></span>
+            </a>
+            <p>
+              The all-in-one, mobile-first platform for managing crews,
+              equipment, and jobsites in the field. Built by LanTec&nbsp;AI.
+            </p>
+          </div>
+
+          <div class="foot-col">
+            <h4>Product</h4>
+            <a href="index.html#features">Features</a>
+            <a href="index.html#how">How it works</a>
+            <a href="index.html#features">Voice entry</a>
+          </div>
+
+          <div class="foot-col">
+            <h4>Company</h4>
+            <a href="index.html#about">About</a>
+            <a href="index.html#contact">Contact</a>
+            <a href="privacy.html">Website Privacy</a>
+            <a href="crewlytics-privacy.html">App Privacy</a>
+          </div>
+
+          <div class="foot-col">
+            <h4>Your data</h4>
+            <a href="delete-account.html">Delete your account</a>
+            <a href="mailto:support@lantec.ai">support@lantec.ai</a>
+          </div>
+        </div>
+
+        <div class="foot-bottom">
+          <p style="margin: 0">
+            &copy; <span id="year">2026</span> LanTec&nbsp;AI. All rights
+            reserved.
+          </p>
+          <p style="margin: 0">
+            <a href="crewlytics-privacy.html">App Privacy</a> · Makers of
+            <strong style="color: #cdd7ee">Crewlytics</strong> ·
+            <a href="mailto:support@lantec.ai">support@lantec.ai</a>
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Auto-update the copyright year.
+      var yearEl = document.getElementById("year");
+      if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+
+      // Sticky nav — solid background once the page scrolls.
+      var nav = document.getElementById("nav");
+      var onScroll = function () {
+        if (window.scrollY > 8) nav.classList.add("scrolled");
+        else nav.classList.remove("scrolled");
+      };
+      onScroll();
+      window.addEventListener("scroll", onScroll, { passive: true });
+
+      // Mobile menu toggle.
+      var toggle = document.getElementById("navToggle");
+      var links = document.getElementById("navLinks");
+      toggle.addEventListener("click", function () {
+        var open = nav.classList.toggle("open");
+        toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      });
+      links.addEventListener("click", function (e) {
+        if (e.target.closest("a")) {
+          nav.classList.remove("open");
+          toggle.setAttribute("aria-expanded", "false");
+        }
+      });
+    </script>
+  </body>
+</html>
