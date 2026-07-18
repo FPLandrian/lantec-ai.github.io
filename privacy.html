@@ -455,6 +455,12 @@
         text-decoration: underline;
         text-underline-offset: 2px;
       }
+      /* Buttons inside the legal content keep their button styling instead of
+         inheriting the blue underlined-link treatment above. */
+      .legal .wrap a.btn {
+        color: #fff;
+        text-decoration: none;
+      }
       .legal hr {
         border: none;
         border-top: 1px solid var(--line);
@@ -781,7 +787,7 @@
 
         <hr />
         <p class="backlink">
-          <a href="index.html">&larr; Back to lantec.ai</a>
+          <a class="btn btn-primary" href="index.html">&larr; Back to lantec.ai</a>
         </p>
       </div>
     </main>
@@ -813,6 +819,8 @@
             <a href="index.html#about">About</a>
             <a href="index.html#contact">Contact</a>
             <a href="privacy.html">Privacy Policy</a>
+            <a href="crewlytics-privacy.html">App Privacy</a>
+            <a href="delete-account.html">Delete your account</a>
           </div>
 
           <div class="foot-col">
