@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Crewlytics Subscription Terms — LanTec AI</title>
+    <meta
+      name="description"
+      content="Crewlytics billing, renewal, cancellation, and refund terms — including the 90-day read-only window to export your records after a subscription ends."
+    />
+    <meta name="theme-color" content="#0e1730" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://lantec.ai/crewlytics-terms.html" />
+    <link rel="icon" type="image/png" href="assets/favicon.png" />
+    <link rel="apple-touch-icon" href="assets/crewlytics-icon-512.png" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="LanTec AI" />
+    <meta property="og:title" content="Crewlytics Subscription Terms — LanTec AI" />
+    <meta
+      property="og:description"
+      content="Crewlytics billing, renewal, cancellation, and refund terms — including the 90-day read-only window to export your records after a subscription ends."
+    />
+    <meta property="og:url" content="https://lantec.ai/crewlytics-terms.html" />
+    <meta property="og:image" content="https://lantec.ai/assets/crewlytics-icon-512.png" />
+
+    <style>
+      /* ============================================================
+         Design tokens  (shared with index.html / privacy.html)
+         ============================================================ */
+      :root {
+        --navy-950: #0a1024;
+        --navy-900: #0e1730;
+        --navy-800: #14213d;
+        --navy-700: #1b2a52;
+        --blue-600: #2563eb;
+        --blue-500: #3b82f6;
+        --cyan-500: #06b6d4;
+        --cyan-400: #22d3ee;
+        --coral: #ff512f;
+        --pink: #f5365c;
+        --ink: #0f172a;
+        --slate: #334155;
+        --muted: #64748b;
+        --line: #e7eaf1;
+        --line-soft: #eef1f6;
+        --panel: #ffffff;
+        --panel-2: #f8fafc;
+        --page: #ffffff;
+        --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06),
+          0 1px 3px rgba(15, 23, 42, 0.05);
+        --shadow-md: 0 10px 30px -12px rgba(15, 23, 42, 0.18);
+        --shadow-lg: 0 30px 60px -20px rgba(15, 23, 42, 0.28);
+        --ring: 0 0 0 4px rgba(37, 99, 235, 0.16);
+        --radius: 16px;
+        --radius-lg: 22px;
+        --maxw: 1140px;
+        --grad-brand: linear-gradient(135deg, var(--cyan-500), var(--blue-600));
+        --grad-accent: linear-gradient(135deg, var(--cyan-400), var(--coral));
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+        -webkit-text-size-adjust: 100%;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+      }
+      body {
+        margin: 0;
+        font-family: "Inter", ui-sans-serif, system-ui, -apple-system,
+          BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        color: var(--slate);
+        background: var(--page);
+        line-height: 1.65;
+        font-size: 17px;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+      }
+      h1,
+      h2,
+      h3 {
+        color: var(--ink);
+        line-height: 1.15;
+        letter-spacing: -0.02em;
+        margin: 0;
+        font-weight: 800;
+      }
+      a {
+        color: var(--blue-600);
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      img {
+        max-width: 100%;
+      }
+      :focus-visible {
+        outline: none;
+        box-shadow: var(--ring);
+        border-radius: 8px;
+      }
+      .wrap {
+        width: 100%;
+        max-width: var(--maxw);
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+      .skip-link {
+        position: absolute;
+        left: -9999px;
+        top: 0;
+        background: #fff;
+        color: var(--ink);
+        padding: 12px 18px;
+        border-radius: 10px;
+        z-index: 100;
+        box-shadow: var(--shadow-md);
+      }
+      .skip-link:focus {
+        left: 16px;
+        top: 16px;
+      }
+
+      /* ============================================================
+         Buttons
+         ============================================================ */
+      .btn {
+        --btn-py: 13px;
+        --btn-px: 24px;
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        font-weight: 650;
+        font-size: 0.98rem;
+        line-height: 1;
+        padding: var(--btn-py) var(--btn-px);
+        border-radius: 12px;
+        border: 1px solid transparent;
+        cursor: pointer;
+        white-space: nowrap;
+        transition: transform 0.14s ease, box-shadow 0.2s ease,
+          background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+      }
+      .btn:hover {
+        text-decoration: none;
+      }
+      .btn svg {
+        width: 18px;
+        height: 18px;
+      }
+      .btn-primary {
+        background: var(--grad-brand);
+        color: #fff;
+        box-shadow: 0 8px 20px -8px rgba(6, 182, 212, 0.65),
+          0 2px 6px rgba(37, 99, 235, 0.35);
+      }
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 14px 30px -10px rgba(6, 182, 212, 0.7),
+          0 4px 10px rgba(37, 99, 235, 0.4);
+      }
+      .btn-sm {
+        --btn-py: 10px;
+        --btn-px: 18px;
+        font-size: 0.92rem;
+      }
+
+      /* ============================================================
+         Navbar  (same behavior as the homepage)
+         ============================================================ */
+      .nav {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        transition: background 0.25s ease, box-shadow 0.25s ease,
+          border-color 0.25s ease;
+        background: rgba(255, 255, 255, 0);
+        border-bottom: 1px solid transparent;
+      }
+      .nav.scrolled {
+        background: rgba(255, 255, 255, 0.82);
+        backdrop-filter: saturate(180%) blur(14px);
+        -webkit-backdrop-filter: saturate(180%) blur(14px);
+        border-bottom-color: var(--line);
+        box-shadow: 0 1px 0 rgba(15, 23, 42, 0.02),
+          0 6px 24px -18px rgba(15, 23, 42, 0.3);
+      }
+      .nav-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 68px;
+      }
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 11px;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        font-size: 1.24rem;
+        color: #fff;
+      }
+      .brand:hover {
+        text-decoration: none;
+      }
+      .brand img {
+        width: 34px;
+        height: 34px;
+        border-radius: 9px;
+        box-shadow: 0 4px 12px -4px rgba(14, 23, 48, 0.5);
+      }
+      .brand .accent {
+        color: var(--cyan-400);
+      }
+      .nav.scrolled .brand {
+        color: var(--ink);
+      }
+      .nav.scrolled .brand .accent {
+        color: var(--cyan-500);
+      }
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+      .nav-links a.link {
+        color: rgba(226, 232, 240, 0.85);
+        font-weight: 550;
+        font-size: 0.96rem;
+        padding: 9px 14px;
+        border-radius: 10px;
+        transition: color 0.15s ease, background 0.15s ease;
+      }
+      .nav-links a.link:hover {
+        text-decoration: none;
+        color: #fff;
+        background: rgba(255, 255, 255, 0.12);
+      }
+      .nav.scrolled .nav-links a.link {
+        color: var(--slate);
+      }
+      .nav.scrolled .nav-links a.link:hover {
+        color: var(--ink);
+        background: rgba(15, 23, 42, 0.045);
+      }
+      .nav-cta {
+        margin-left: 10px;
+      }
+      .nav-toggle {
+        display: none;
+        width: 44px;
+        height: 44px;
+        border: 1px solid rgba(255, 255, 255, 0.28);
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 11px;
+        cursor: pointer;
+        align-items: center;
+        justify-content: center;
+      }
+      .nav-toggle span,
+      .nav-toggle span::before,
+      .nav-toggle span::after {
+        content: "";
+        display: block;
+        width: 18px;
+        height: 2px;
+        background: #fff;
+        border-radius: 2px;
+        position: relative;
+        transition: transform 0.22s ease, opacity 0.22s ease;
+      }
+      .nav.scrolled .nav-toggle,
+      .nav.open .nav-toggle {
+        border-color: var(--line);
+        background: rgba(255, 255, 255, 0.7);
+      }
+      .nav.scrolled .nav-toggle span,
+      .nav.scrolled .nav-toggle span::before,
+      .nav.scrolled .nav-toggle span::after,
+      .nav.open .nav-toggle span,
+      .nav.open .nav-toggle span::before,
+      .nav.open .nav-toggle span::after {
+        background: var(--ink);
+      }
+      .nav-toggle span::before {
+        position: absolute;
+        top: -6px;
+      }
+      .nav-toggle span::after {
+        position: absolute;
+        top: 6px;
+      }
+      .nav.open .nav-toggle span {
+        background: transparent;
+      }
+      .nav.open .nav-toggle span::before {
+        transform: translateY(6px) rotate(45deg);
+      }
+      .nav.open .nav-toggle span::after {
+        transform: translateY(-6px) rotate(-45deg);
+      }
+
+      /* ============================================================
+         Page header  (compact navy band, matches the hero)
+         ============================================================ */
+      .page-hero {
+        position: relative;
+        overflow: hidden;
+        color: #eaf0ff;
+        background: radial-gradient(
+            65% 60% at 12% 6%,
+            rgba(34, 211, 238, 0.2),
+            transparent 60%
+          ),
+          radial-gradient(
+            55% 60% at 92% 20%,
+            rgba(255, 81, 47, 0.16),
+            transparent 62%
+          ),
+          linear-gradient(165deg, #0d1630 0%, #14213d 55%, #1b2a52 100%);
+        margin-top: -68px;
+        padding: 136px 0 60px;
+      }
+      .page-hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: linear-gradient(
+            rgba(255, 255, 255, 0.045) 1px,
+            transparent 1px
+          ),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+        background-size: 46px 46px;
+        -webkit-mask-image: radial-gradient(
+          80% 80% at 30% 20%,
+          #000 0%,
+          transparent 80%
+        );
+        mask-image: radial-gradient(80% 80% at 30% 20%, #000 0%, transparent 80%);
+        pointer-events: none;
+      }
+      .page-hero::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 4px;
+        background: linear-gradient(90deg, var(--cyan-400) 0%, var(--coral) 100%);
+      }
+      .page-hero .wrap {
+        position: relative;
+        z-index: 2;
+      }
+      .page-hero .kicker {
+        display: inline-block;
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--cyan-400);
+        margin-bottom: 12px;
+      }
+      .page-hero h1 {
+        color: #fff;
+        font-size: clamp(2rem, 4.6vw, 2.9rem);
+        letter-spacing: -0.03em;
+      }
+      .page-hero .updated {
+        margin: 14px 0 0;
+        color: #9fb0dc;
+        font-size: 0.95rem;
+      }
+
+      /* ============================================================
+         Legal content
+         ============================================================ */
+      .legal {
+        padding: 60px 0 88px;
+        background: #fff;
+      }
+      .legal .wrap {
+        max-width: 780px;
+      }
+      .legal .intro {
+        font-size: 1.12rem;
+        color: var(--slate);
+        margin: 0 0 8px;
+      }
+      .callout {
+        background: var(--panel-2);
+        border: 1px solid var(--line);
+        border-left: 4px solid var(--cyan-500);
+        border-radius: 12px;
+        padding: 18px 22px;
+        margin: 24px 0 8px;
+        color: var(--ink);
+      }
+      .callout strong {
+        color: var(--ink);
+      }
+      .callout.warn {
+        border-left-color: var(--coral);
+      }
+      .legal h2 {
+        font-size: 1.32rem;
+        font-weight: 750;
+        color: var(--ink);
+        margin: 44px 0 12px;
+        scroll-margin-top: 90px;
+      }
+      .legal h2 .n {
+        color: var(--cyan-500);
+        font-variant-numeric: tabular-nums;
+        margin-right: 8px;
+      }
+      .legal h3 {
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: var(--ink);
+        margin: 26px 0 8px;
+      }
+      .legal p {
+        margin: 0 0 15px;
+        color: var(--slate);
+      }
+      .legal ul {
+        margin: 0 0 16px;
+        padding-left: 4px;
+        list-style: none;
+      }
+      .legal li {
+        position: relative;
+        padding-left: 26px;
+        margin-bottom: 11px;
+        color: var(--slate);
+      }
+      .legal li::before {
+        content: "";
+        position: absolute;
+        left: 4px;
+        top: 11px;
+        width: 7px;
+        height: 7px;
+        border-radius: 2px;
+        background: var(--grad-brand);
+      }
+      .legal .wrap a {
+        color: var(--blue-600);
+        font-weight: 550;
+        text-decoration: underline;
+        text-underline-offset: 2px;
+      }
+      /* Buttons inside the legal content keep their button styling instead of
+         inheriting the blue underlined-link treatment above. */
+      .legal .wrap a.btn {
+        color: #fff;
+        text-decoration: none;
+      }
+      .legal hr {
+        border: none;
+        border-top: 1px solid var(--line);
+        margin: 40px 0 0;
+      }
+      .legal .backlink {
+        margin-top: 40px;
+      }
+
+      /* ============================================================
+         Footer  (shared with index.html)
+         ============================================================ */
+      footer {
+        background: var(--navy-950);
+        color: #93a3c9;
+        padding: 62px 0 34px;
+        font-size: 0.94rem;
+      }
+      .foot-grid {
+        display: grid;
+        grid-template-columns: 1.6fr 1fr 1fr 1fr;
+        gap: 40px;
+      }
+      .foot-brand .brand {
+        color: #fff;
+        margin-bottom: 14px;
+      }
+      .foot-brand .brand .accent {
+        color: var(--cyan-400);
+      }
+      .foot-brand p {
+        margin: 0;
+        max-width: 300px;
+        color: #8090b6;
+      }
+      .foot-col h4 {
+        color: #cdd7ee;
+        font-size: 0.82rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin: 4px 0 16px;
+        font-weight: 700;
+      }
+      .foot-col a {
+        display: block;
+        color: #93a3c9;
+        padding: 5px 0;
+        font-weight: 500;
+      }
+      .foot-col a:hover {
+        color: #fff;
+        text-decoration: none;
+      }
+      .foot-bottom {
+        margin-top: 44px;
+        padding-top: 24px;
+        border-top: 1px solid rgba(255, 255, 255, 0.09);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+        flex-wrap: wrap;
+        color: #7c8cb2;
+        font-size: 0.88rem;
+      }
+      .foot-bottom a {
+        color: #aeb9d6;
+      }
+
+      /* ============================================================
+         Responsive
+         ============================================================ */
+      @media (max-width: 940px) {
+        .foot-grid {
+          grid-template-columns: 1fr 1fr;
+          gap: 32px;
+        }
+        .foot-brand {
+          grid-column: 1 / -1;
+        }
+      }
+      @media (max-width: 720px) {
+        .nav-links {
+          position: absolute;
+          top: calc(100% + 8px);
+          left: 16px;
+          right: 16px;
+          flex-direction: column;
+          align-items: stretch;
+          gap: 4px;
+          background: #fff;
+          border: 1px solid var(--line);
+          border-radius: 16px;
+          padding: 12px;
+          box-shadow: var(--shadow-lg);
+          opacity: 0;
+          transform: translateY(-8px) scale(0.99);
+          pointer-events: none;
+          transition: opacity 0.18s ease, transform 0.18s ease;
+        }
+        .nav.open .nav-links {
+          opacity: 1;
+          transform: none;
+          pointer-events: auto;
+        }
+        .nav-links a.link,
+        .nav.scrolled .nav-links a.link {
+          padding: 12px 14px;
+          font-size: 1rem;
+          color: var(--slate);
+        }
+        .nav-links a.link:hover {
+          color: var(--ink);
+          background: rgba(15, 23, 42, 0.045);
+        }
+        .nav-cta {
+          margin-left: 0;
+          margin-top: 6px;
+          justify-content: center;
+        }
+        .nav-toggle {
+          display: inline-flex;
+        }
+        .nav.scrolled,
+        .nav.open {
+          background: rgba(255, 255, 255, 0.92);
+          backdrop-filter: saturate(180%) blur(14px);
+        }
+        .nav.open .brand {
+          color: var(--ink);
+        }
+        .nav.open .brand .accent {
+          color: var(--cyan-500);
+        }
+      }
+      @media (max-width: 560px) {
+        body {
+          font-size: 16px;
+        }
+        .page-hero {
+          padding: 112px 0 46px;
+        }
+        .legal {
+          padding: 44px 0 64px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <!-- ── Navbar ─────────────────────────────────────────── -->
+    <nav class="nav" id="nav">
+      <div class="wrap nav-inner">
+        <a class="brand" href="index.html" aria-label="Crewlytics home">
+          <img src="assets/crewlytics-icon-512.png" alt="" width="34" height="34" />
+          <span>Crew<span class="accent">lytics</span></span>
+        </a>
+
+        <div class="nav-links" id="navLinks">
+          <a class="link" href="index.html#features">Features</a>
+          <a class="link" href="index.html#how">How it works</a>
+          <a class="link" href="index.html#about">About</a>
+          <a class="link" href="index.html#contact">Contact</a>
+          <a class="btn btn-primary btn-sm nav-cta" href="index.html#contact">
+            Get in touch
+          </a>
+        </div>
+
+        <button
+          class="nav-toggle"
+          id="navToggle"
+          aria-label="Toggle menu"
+          aria-expanded="false"
+          aria-controls="navLinks"
+        >
+          <span></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- ── Page header ────────────────────────────────────── -->
+    <header class="page-hero">
+      <div class="wrap">
+        <span class="kicker">Legal</span>
+        <h1>Crewlytics Subscription Terms</h1>
+        <p class="updated">Last updated: August&nbsp;12,&nbsp;2026</p>
+      </div>
+    </header>
+
+    <!-- ── Terms content ──────────────────────────────────── -->
+    <main class="legal" id="main">
+      <div class="wrap">
+        <p class="intro">
+          These Subscription Terms cover billing, renewal, cancellation, and
+          refunds for a <strong>Crewlytics</strong> subscription from
+          LanTec&nbsp;AI&nbsp;LLC (&ldquo;we&rdquo;, &ldquo;us&rdquo;, or
+          &ldquo;our&rdquo;). They form an agreement between us and the company
+          that subscribes (&ldquo;you&rdquo;).
+        </p>
+
+        <div class="callout">
+          <strong>In short:</strong> Crewlytics is billed monthly and renews
+          automatically until you cancel. You can cancel at any time and keep
+          full access through the end of the month you have already paid for. We
+          do not refund partial months — but after your subscription ends you
+          keep <strong>read-only access for 90 days</strong> to export all your
+          timesheets and records, and we never delete your data automatically.
+        </div>
+
+        <h2><span class="n">1.</span>What these terms cover</h2>
+        <p>
+          These terms apply to a paid Crewlytics subscription. Crewlytics is sold
+          as a <strong>company subscription</strong>: one company subscribes, and
+          its administrator invites the crew. There is no individual signup and
+          no charge to the individual people who use the app.
+        </p>
+        <p>
+          How the app handles personal information is a separate document — see
+          the
+          <a href="crewlytics-privacy.html">Crewlytics App Privacy Policy</a>.
+          Payments are processed by Stripe; we never see or store your card
+          details.
+        </p>
+
+        <h2><span class="n">2.</span>Billing and renewal</h2>
+        <ul>
+          <li>
+            Crewlytics is billed <strong>monthly in advance</strong> and renews
+            automatically each month at the then-current rates until it is
+            cancelled.
+          </li>
+          <li>
+            Pricing is based on your team&rsquo;s size: a flat monthly fee
+            covers your first 10 users, and each additional user is billed at
+            the published per-user rate for your team&rsquo;s size. Your bill
+            follows your headcount automatically &mdash; there are no plans to
+            choose or change.
+          </li>
+          <li>
+            Users added part-way through a billing period are
+            <strong>prorated</strong> from the day they are added; removing a
+            user reduces your next invoice the same way. Nothing extra is
+            charged mid-month &mdash; adjustments appear on your next invoice.
+          </li>
+          <li>
+            Stripe emails a receipt for every payment. You can view your full
+            invoice history at any time from
+            <strong>Billing → Manage subscription</strong> in the app.
+          </li>
+        </ul>
+
+        <h2><span class="n">3.</span>Cancellation</h2>
+        <p>
+          You may cancel at any time, with no cancellation fee and no notice
+          period, either from
+          <strong>Billing → Manage subscription</strong> inside the app or by
+          emailing
+          <a href="mailto:support.lantec@gmail.com">support.lantec@gmail.com</a>.
+        </p>
+        <p>
+          <strong>Cancellation takes effect at the end of your current billing
+          period.</strong> You keep full access — including clocking in and out,
+          approvals, and everything else — until that date. We do not cut off
+          access on the day you cancel, because you have already paid for the
+          rest of that month.
+        </p>
+
+        <h2><span class="n">4.</span>Refunds</h2>
+        <p>
+          <strong>We do not refund partial months.</strong> Because cancellation
+          takes effect at the end of the period you have already paid for, you
+          receive the full month of service you were charged for rather than a
+          partial refund of it.
+        </p>
+        <p>
+          If you were <strong>billed in error</strong>, that is different, and we
+          will refund it in full. That includes a duplicate charge, a charge
+          taken after we failed to process a cancellation you requested, or a
+          charge at the wrong rate. Email
+          <a href="mailto:support.lantec@gmail.com">support.lantec@gmail.com</a>
+          and we will make it right.
+        </p>
+        <p>
+          If something about a charge looks wrong to you, please contact us
+          before disputing it with your bank — we can almost always resolve it
+          faster than a dispute can.
+        </p>
+
+        <h2><span class="n">5.</span>If a payment fails</h2>
+        <p>
+          A failed payment does not lock you out. When a card is declined, Stripe
+          retries it over roughly the following two weeks, and
+          <strong>your team keeps working normally the entire time</strong> — a
+          foreman must never be unable to clock a crew in because a card expired
+          at head office.
+        </p>
+        <p>
+          We will email you so you can update the card from
+          <strong>Billing → Manage subscription</strong>. Only if the retries are
+          exhausted and the subscription ends does the wind-down in section 6
+          begin.
+        </p>
+
+        <h2><span class="n">6.</span>Your data after your subscription ends</h2>
+        <p>
+          When a subscription ends — whether you cancelled or a payment was never
+          recovered — your account does not disappear:
+        </p>
+        <ul>
+          <li>
+            <strong>For 90 days you keep read-only access.</strong> You and your
+            team can still sign in, review history, and export your timesheets
+            and records. You simply cannot record new work.
+          </li>
+          <li>
+            <strong>After 90 days, sign-in is disabled — but nothing is
+            deleted.</strong> Your records are retained on our systems.
+          </li>
+          <li>
+            <strong>Resubscribing restores everything.</strong> Coming back
+            reactivates your account with all of your history intact.
+          </li>
+          <li>
+            <strong>We do not delete customer data automatically.</strong>
+            Permanent deletion happens only when you ask us for it in writing.
+          </li>
+        </ul>
+        <p>
+          This matters more than it might sound. Timesheets are payroll records,
+          and as the employer you are legally required to retain them for years
+          after the work is done. Cutting you off from your own records the
+          moment a contract lapses would put you in a difficult position, so we
+          deliberately do not do it.
+        </p>
+        <p>
+          Individual people can still delete their own personal data at any time,
+          independently of the company's subscription — see
+          <a href="delete-account.html">Delete your account</a>.
+        </p>
+
+        <h2><span class="n">7.</span>Price changes</h2>
+        <p>
+          We will give you at least <strong>30 days' notice by email</strong>
+          before any change to your subscription price takes effect. If you do
+          not want to continue at the new rate, you can cancel before it applies
+          under section 3.
+        </p>
+
+        <h2><span class="n">8.</span>Changes to these terms</h2>
+        <p>
+          We may update these Subscription Terms from time to time. When we do,
+          we will revise the &ldquo;Last updated&rdquo; date at the top of this
+          page. If a change materially affects your rights, we will tell you by
+          email before it takes effect.
+        </p>
+
+        <h2><span class="n">9.</span>Contact us</h2>
+        <p>
+          Questions about billing, an invoice, or a cancellation? Email
+          <a href="mailto:support.lantec@gmail.com">support.lantec@gmail.com</a>
+          and a human will answer.
+        </p>
+
+        <hr />
+        <p class="backlink">
+          <a class="btn btn-primary" href="index.html">&larr; Back to lantec.ai</a>
+        </p>
+      </div>
+    </main>
+
+    <!-- ── Footer ─────────────────────────────────────────── -->
+    <footer>
+      <div class="wrap">
+        <div class="foot-grid">
+          <div class="foot-brand">
+            <a class="brand" href="index.html">
+              <img src="assets/crewlytics-icon-512.png" alt="" width="34" height="34" />
+              <span>Crew<span class="accent">lytics</span></span>
+            </a>
+            <p>
+              The all-in-one, mobile-first platform for managing crews,
+              equipment, and jobsites in the field. Built by LanTec&nbsp;AI.
+            </p>
+          </div>
+
+          <div class="foot-col">
+            <h4>Product</h4>
+            <a href="index.html#features">Features</a>
+            <a href="index.html#how">How it works</a>
+            <a href="index.html#features">Voice entry</a>
+          </div>
+
+          <div class="foot-col">
+            <h4>Company</h4>
+            <a href="index.html#about">About</a>
+            <a href="index.html#contact">Contact</a>
+            <a href="privacy.html">LanTec Privacy</a>
+            <a href="crewlytics-privacy.html">Crewlytics App Privacy</a>
+            <a href="crewlytics-terms.html">Subscription Terms</a>
+            <a href="crewlytics-accessibility.html">Accessibility</a>
+            <a href="delete-account.html">Delete your account</a>
+            <a href="data-request.html">Request your data</a>
+          </div>
+
+          <div class="foot-col">
+            <h4>Get in touch</h4>
+            <a href="mailto:support.lantec@gmail.com">support.lantec@gmail.com</a>
+          </div>
+        </div>
+
+        <div class="foot-bottom">
+          <p style="margin: 0">
+            &copy; <span id="year">2026</span> LanTec&nbsp;AI&nbsp;LLC. All rights
+            reserved.
+          </p>
+          <p style="margin: 0">
+            <a href="crewlytics-privacy.html">Crewlytics App Privacy</a> · Makers of
+            <strong style="color: #cdd7ee">Crewlytics</strong> ·
+            <a href="mailto:support.lantec@gmail.com">support.lantec@gmail.com</a>
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Auto-update the copyright year.
+      var yearEl = document.getElementById("year");
+      if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+
+      // Sticky nav — solid background once the page scrolls.
+      var nav = document.getElementById("nav");
+      var onScroll = function () {
+        if (window.scrollY > 8) nav.classList.add("scrolled");
+        else nav.classList.remove("scrolled");
+      };
+      onScroll();
+      window.addEventListener("scroll", onScroll, { passive: true });
+
+      // Mobile menu toggle.
+      var toggle = document.getElementById("navToggle");
+      var links = document.getElementById("navLinks");
+      toggle.addEventListener("click", function () {
+        var open = nav.classList.toggle("open");
+        toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      });
+      links.addEventListener("click", function (e) {
+        if (e.target.closest("a")) {
+          nav.classList.remove("open");
+          toggle.setAttribute("aria-expanded", "false");
+        }
+      });
+    </script>
+  </body>
+</html>
