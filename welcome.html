@@ -171,6 +171,13 @@
         --btn-px: 18px;
         font-size: 0.92rem;
       }
+      /* Side-by-side buttons that wrap cleanly on narrow screens. */
+      .btn-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin: 18px 0 15px;
+      }
 
       /* ============================================================
          Navbar  (same behavior as the homepage)
@@ -671,12 +678,10 @@
           Crewlytics runs on iPhone and Android. There is nothing to install on
           a computer — everything happens on your crew's phones.
         </p>
-        <p style="margin-top: 18px">
+        <div class="btn-row">
           <a class="btn btn-primary" href="https://apps.apple.com/app/id6794715240">Download for iPhone</a>
-          <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.crewlytics.app" style="margin-left: 10px"
-            >Download for Android</a
-          >
-        </p>
+          <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.crewlytics.app">Download for Android</a>
+        </div>
 
         <h2><span class="n">2.</span>Sign in</h2>
         <p>
