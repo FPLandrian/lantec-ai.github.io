@@ -166,11 +166,6 @@
         box-shadow: 0 14px 30px -10px rgba(6, 182, 212, 0.7),
           0 4px 10px rgba(37, 99, 235, 0.4);
       }
-      .btn-sm {
-        --btn-py: 10px;
-        --btn-px: 18px;
-        font-size: 0.92rem;
-      }
       .btn-lg {
         --btn-py: 16px;
         --btn-px: 30px;
@@ -178,31 +173,9 @@
       }
 
       /* ============================================================
-         Navbar
+         Product name  (plain text, not a link: these pages are
+         standalone documents with no site navigation)
          ============================================================ */
-      .nav {
-        position: sticky;
-        top: 0;
-        z-index: 50;
-        transition: background 0.25s ease, box-shadow 0.25s ease,
-          border-color 0.25s ease;
-        background: rgba(255, 255, 255, 0);
-        border-bottom: 1px solid transparent;
-      }
-      .nav.scrolled {
-        background: rgba(255, 255, 255, 0.82);
-        backdrop-filter: saturate(180%) blur(14px);
-        -webkit-backdrop-filter: saturate(180%) blur(14px);
-        border-bottom-color: var(--line);
-        box-shadow: 0 1px 0 rgba(15, 23, 42, 0.02),
-          0 6px 24px -18px rgba(15, 23, 42, 0.3);
-      }
-      .nav-inner {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        height: 68px;
-      }
       .brand {
         display: inline-flex;
         align-items: center;
@@ -212,9 +185,6 @@
         font-size: 1.24rem;
         color: #fff;
       }
-      .brand:hover {
-        text-decoration: none;
-      }
       .brand img {
         width: 34px;
         height: 34px;
@@ -223,93 +193,6 @@
       }
       .brand .accent {
         color: var(--cyan-400);
-      }
-      .nav.scrolled .brand {
-        color: var(--ink);
-      }
-      .nav.scrolled .brand .accent {
-        color: var(--cyan-500);
-      }
-      .nav-links {
-        display: flex;
-        align-items: center;
-        gap: 4px;
-      }
-      .nav-links a.link {
-        color: rgba(226, 232, 240, 0.85);
-        font-weight: 550;
-        font-size: 0.96rem;
-        padding: 9px 14px;
-        border-radius: 10px;
-        transition: color 0.15s ease, background 0.15s ease;
-      }
-      .nav-links a.link:hover {
-        text-decoration: none;
-        color: #fff;
-        background: rgba(255, 255, 255, 0.12);
-      }
-      .nav.scrolled .nav-links a.link {
-        color: var(--slate);
-      }
-      .nav.scrolled .nav-links a.link:hover {
-        color: var(--ink);
-        background: rgba(15, 23, 42, 0.045);
-      }
-      .nav-cta {
-        margin-left: 10px;
-      }
-      .nav-toggle {
-        display: none;
-        width: 44px;
-        height: 44px;
-        border: 1px solid rgba(255, 255, 255, 0.28);
-        background: rgba(255, 255, 255, 0.08);
-        border-radius: 11px;
-        cursor: pointer;
-        align-items: center;
-        justify-content: center;
-      }
-      .nav-toggle span,
-      .nav-toggle span::before,
-      .nav-toggle span::after {
-        content: "";
-        display: block;
-        width: 18px;
-        height: 2px;
-        background: #fff;
-        border-radius: 2px;
-        position: relative;
-        transition: transform 0.22s ease, opacity 0.22s ease;
-      }
-      .nav.scrolled .nav-toggle,
-      .nav.open .nav-toggle {
-        border-color: var(--line);
-        background: rgba(255, 255, 255, 0.7);
-      }
-      .nav.scrolled .nav-toggle span,
-      .nav.scrolled .nav-toggle span::before,
-      .nav.scrolled .nav-toggle span::after,
-      .nav.open .nav-toggle span,
-      .nav.open .nav-toggle span::before,
-      .nav.open .nav-toggle span::after {
-        background: var(--ink);
-      }
-      .nav-toggle span::before {
-        position: absolute;
-        top: -6px;
-      }
-      .nav-toggle span::after {
-        position: absolute;
-        top: 6px;
-      }
-      .nav.open .nav-toggle span {
-        background: transparent;
-      }
-      .nav.open .nav-toggle span::before {
-        transform: translateY(6px) rotate(45deg);
-      }
-      .nav.open .nav-toggle span::after {
-        transform: translateY(-6px) rotate(-45deg);
       }
 
       /* ============================================================
@@ -330,8 +213,7 @@
             transparent 62%
           ),
           linear-gradient(165deg, #0d1630 0%, #14213d 55%, #1b2a52 100%);
-        margin-top: -68px;
-        padding: 136px 0 60px;
+        padding: 0 0 60px;
       }
       .page-hero::before {
         content: "";
@@ -363,6 +245,12 @@
       .page-hero .wrap {
         position: relative;
         z-index: 2;
+      }
+      .page-hero .doc-brand {
+        display: flex;
+        align-items: center;
+        min-height: 68px;
+        margin-bottom: 68px;
       }
       .page-hero .kicker {
         display: inline-block;
@@ -442,14 +330,6 @@
         text-decoration: underline;
         text-underline-offset: 2px;
       }
-      .legal hr {
-        border: none;
-        border-top: 1px solid var(--line);
-        margin: 40px 0 0;
-      }
-      .legal .backlink {
-        margin-top: 40px;
-      }
 
       /* Request card */
       .request-card {
@@ -515,51 +395,34 @@
       }
 
       /* ============================================================
-         Footer
+         Footer  (the other documents and the support email only)
          ============================================================ */
       footer {
         background: var(--navy-950);
         color: #93a3c9;
-        padding: 62px 0 34px;
+        padding: 40px 0 34px;
         font-size: 0.94rem;
       }
-      .foot-grid {
-        display: grid;
-        grid-template-columns: 1.6fr 1fr 1fr 1fr;
-        gap: 40px;
-      }
-      .foot-brand .brand {
-        color: #fff;
-        margin-bottom: 14px;
-      }
-      .foot-brand .brand .accent {
-        color: var(--cyan-400);
-      }
-      .foot-brand p {
+      .foot-docs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px 28px;
         margin: 0;
-        max-width: 300px;
-        color: #8090b6;
+        padding: 0;
+        list-style: none;
       }
-      .foot-col h4 {
-        color: #cdd7ee;
-        font-size: 0.82rem;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-        margin: 4px 0 16px;
-        font-weight: 700;
-      }
-      .foot-col a {
-        display: block;
+      .foot-docs a {
+        display: inline-block;
         color: #93a3c9;
         padding: 5px 0;
         font-weight: 500;
       }
-      .foot-col a:hover {
+      .foot-docs a:hover {
         color: #fff;
         text-decoration: none;
       }
       .foot-bottom {
-        margin-top: 44px;
+        margin-top: 24px;
         padding-top: 24px;
         border-top: 1px solid rgba(255, 255, 255, 0.09);
         display: flex;
@@ -577,71 +440,15 @@
       /* ============================================================
          Responsive
          ============================================================ */
-      @media (max-width: 940px) {
-        .foot-grid {
-          grid-template-columns: 1fr 1fr;
-          gap: 32px;
-        }
-        .foot-brand {
-          grid-column: 1 / -1;
-        }
-      }
-      @media (max-width: 720px) {
-        .nav-links {
-          position: absolute;
-          top: calc(100% + 8px);
-          left: 16px;
-          right: 16px;
-          flex-direction: column;
-          align-items: stretch;
-          gap: 4px;
-          background: #fff;
-          border: 1px solid var(--line);
-          border-radius: 16px;
-          padding: 12px;
-          box-shadow: var(--shadow-lg);
-          opacity: 0;
-          transform: translateY(-8px) scale(0.99);
-          pointer-events: none;
-          transition: opacity 0.18s ease, transform 0.18s ease;
-        }
-        .nav.open .nav-links {
-          opacity: 1;
-          transform: none;
-          pointer-events: auto;
-        }
-        .nav-links a.link,
-        .nav.scrolled .nav-links a.link {
-          padding: 12px 14px;
-          font-size: 1rem;
-          color: var(--slate);
-        }
-        .nav-cta {
-          margin-left: 0;
-          margin-top: 6px;
-          justify-content: center;
-        }
-        .nav-toggle {
-          display: inline-flex;
-        }
-        .nav.scrolled,
-        .nav.open {
-          background: rgba(255, 255, 255, 0.92);
-          backdrop-filter: saturate(180%) blur(14px);
-        }
-        .nav.open .brand {
-          color: var(--ink);
-        }
-        .nav.open .brand .accent {
-          color: var(--cyan-500);
-        }
-      }
       @media (max-width: 560px) {
         body {
           font-size: 16px;
         }
         .page-hero {
-          padding: 112px 0 46px;
+          padding: 0 0 46px;
+        }
+        .page-hero .doc-brand {
+          margin-bottom: 44px;
         }
         .legal {
           padding: 44px 0 64px;
@@ -655,38 +462,14 @@
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
 
-    <!-- ── Navbar ─────────────────────────────────────────── -->
-    <nav class="nav" id="nav">
-      <div class="wrap nav-inner">
-        <a class="brand" href="index.html" aria-label="Crewlytics home">
-          <img src="assets/crewlytics-icon-512.png" alt="" width="34" height="34" />
-          <span>Crew<span class="accent">lytics</span></span>
-        </a>
-
-        <div class="nav-links" id="navLinks">
-          <a class="link" href="index.html#features">Features</a>
-          <a class="link" href="index.html#how">How it works</a>
-          <a class="link" href="index.html#about">About</a>
-          <a class="link" href="index.html#contact">Contact</a>
-          <a class="btn btn-primary btn-sm nav-cta" href="index.html#contact">
-            Get in touch
-          </a>
-        </div>
-
-        <button
-          class="nav-toggle"
-          id="navToggle"
-          aria-label="Toggle menu"
-          aria-expanded="false"
-          aria-controls="navLinks"
-        >
-          <span></span>
-        </button>
-      </div>
-    </nav>
-
     <!-- ── Page header ────────────────────────────────────── -->
     <header class="page-hero">
+      <div class="wrap doc-brand">
+        <span class="brand">
+          <img src="assets/crewlytics-icon-512.png" alt="" width="34" height="34" />
+          <span>Crew<span class="accent">lytics</span></span>
+        </span>
+      </div>
       <div class="wrap">
         <span class="kicker">Your data</span>
         <h1>Delete your Crewlytics account</h1>
@@ -773,53 +556,19 @@
           ends, you can delete your account in the app. Your company's records
           are kept either way; email us if you want them erased as well.
         </div>
-
-        <hr />
-        <p class="backlink">
-          <a class="btn btn-primary" href="index.html">&larr; Back to lantec.ai</a>
-        </p>
       </div>
     </main>
 
     <!-- ── Footer ─────────────────────────────────────────── -->
     <footer>
       <div class="wrap">
-        <div class="foot-grid">
-          <div class="foot-brand">
-            <a class="brand" href="index.html">
-              <img src="assets/crewlytics-icon-512.png" alt="" width="34" height="34" />
-              <span>Crew<span class="accent">lytics</span></span>
-            </a>
-            <p>
-              The all-in-one, mobile-first platform for managing crews,
-              equipment, and jobsites in the field. Built by LanTec&nbsp;AI.
-            </p>
-          </div>
-
-          <div class="foot-col">
-            <h4>Product</h4>
-            <a href="index.html#features">Features</a>
-            <a href="index.html#how">How it works</a>
-            <a href="index.html#features">Voice entry</a>
-          </div>
-
-          <div class="foot-col">
-            <h4>Company</h4>
-            <a href="index.html#about">About</a>
-            <a href="index.html#contact">Contact</a>
-            <a href="privacy.html">LanTec Privacy</a>
-            <a href="crewlytics-privacy.html">Crewlytics App Privacy</a>
-            <a href="crewlytics-terms.html">Subscription Terms</a>
-            <a href="crewlytics-accessibility.html">Accessibility</a>
-            <a href="delete-account.html">Delete your account</a>
-            <a href="data-request.html">Request your data</a>
-          </div>
-
-          <div class="foot-col">
-            <h4>Get in touch</h4>
-            <a href="mailto:support.lantec@gmail.com">support.lantec@gmail.com</a>
-          </div>
-        </div>
+        <ul class="foot-docs">
+          <li><a href="privacy.html">LanTec Privacy</a></li>
+          <li><a href="crewlytics-privacy.html">Crewlytics App Privacy</a></li>
+          <li><a href="crewlytics-terms.html">Subscription Terms</a></li>
+          <li><a href="crewlytics-accessibility.html">Accessibility</a></li>
+          <li><a href="data-request.html">Request your data</a></li>
+        </ul>
 
         <div class="foot-bottom">
           <p style="margin: 0">
@@ -827,8 +576,6 @@
             reserved.
           </p>
           <p style="margin: 0">
-            <a href="crewlytics-privacy.html">Crewlytics App Privacy</a> · Makers of
-            <strong style="color: #cdd7ee">Crewlytics</strong> ·
             <a href="mailto:support.lantec@gmail.com">support.lantec@gmail.com</a>
           </p>
         </div>
@@ -839,29 +586,6 @@
       // Auto-update the copyright year.
       var yearEl = document.getElementById("year");
       if (yearEl) yearEl.textContent = String(new Date().getFullYear());
-
-      // Sticky nav — solid background once the page scrolls.
-      var nav = document.getElementById("nav");
-      var onScroll = function () {
-        if (window.scrollY > 8) nav.classList.add("scrolled");
-        else nav.classList.remove("scrolled");
-      };
-      onScroll();
-      window.addEventListener("scroll", onScroll, { passive: true });
-
-      // Mobile menu toggle.
-      var toggle = document.getElementById("navToggle");
-      var links = document.getElementById("navLinks");
-      toggle.addEventListener("click", function () {
-        var open = nav.classList.toggle("open");
-        toggle.setAttribute("aria-expanded", open ? "true" : "false");
-      });
-      links.addEventListener("click", function (e) {
-        if (e.target.closest("a")) {
-          nav.classList.remove("open");
-          toggle.setAttribute("aria-expanded", "false");
-        }
-      });
     </script>
   </body>
 </html>
