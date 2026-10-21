@@ -1065,7 +1065,8 @@
       }
       .plans {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        /* min(): a 300px card is wider than the column on a 320px screen. */
+        grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
         gap: 22px;
         align-items: start;
         max-width: 880px;
@@ -1494,6 +1495,14 @@
         }
         .cta-actions .btn {
           justify-content: center;
+        }
+      }
+
+      @media (max-width: 359px) {
+        /* The support email can't wrap, so on the narrowest phones its
+           column pushed the two-column footer past the screen edge. */
+        .foot-grid > .foot-col:last-child {
+          grid-column: 1 / -1;
         }
       }
     </style>
