@@ -246,11 +246,46 @@
         position: relative;
         z-index: 2;
       }
+      /* Product name on the left, "LanTec AI home" on the right. When the
+         row is too narrow for both, wrap-reverse puts the link above the
+         name; the 8px padding keeps its focus outline inside the header. */
       .page-hero .doc-brand {
         display: flex;
+        flex-wrap: wrap-reverse;
+        justify-content: space-between;
         align-items: center;
+        gap: 4px 16px;
         min-height: 68px;
+        padding-top: 8px;
+        padding-bottom: 8px;
         margin-bottom: 68px;
+      }
+      /* One plain link, the same for every visitor. */
+      .page-hero .home-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        min-height: 44px;
+        margin: 0 -14px;
+        padding: 0 14px;
+        border-radius: 10px;
+        color: inherit;
+        font-size: 0.96rem;
+        font-weight: 550;
+        transition: color 0.15s ease, background 0.15s ease;
+      }
+      .page-hero .home-link:hover {
+        color: #fff;
+        background: rgba(255, 255, 255, 0.12);
+        text-decoration: none;
+      }
+      /* The global focus ring (blue at 16% opacity) is nearly invisible on
+         navy, so links in the header and footer get a cyan outline. */
+      .page-hero .home-link:focus-visible,
+      footer a:focus-visible {
+        outline: 2px solid var(--cyan-400);
+        outline-offset: 2px;
+        box-shadow: none;
       }
       .page-hero .kicker {
         display: inline-block;
@@ -469,6 +504,7 @@
           <img src="assets/crewlytics-icon-512.png" alt="" width="34" height="34" />
           <span>Crew<span class="accent">lytics</span></span>
         </span>
+        <a class="home-link" href="/"><span aria-hidden="true">&larr;</span> LanTec AI home</a>
       </div>
       <div class="wrap">
         <span class="kicker">Your data</span>
@@ -563,6 +599,7 @@
     <footer>
       <div class="wrap">
         <ul class="foot-docs">
+          <li><a href="/">LanTec AI home</a></li>
           <li><a href="privacy.html">LanTec Privacy</a></li>
           <li><a href="crewlytics-privacy.html">Crewlytics App Privacy</a></li>
           <li><a href="crewlytics-terms.html">Subscription Terms</a></li>
