@@ -1487,6 +1487,11 @@
           backdrop-filter: saturate(180%) blur(14px);
           --focus: var(--blue-700);
         }
+        /* The skip link appears over this bar. Focusing it scrolls to the
+           top, so the bar behind it is white only while the menu is open. */
+        body:has(.nav.open) .skip-link {
+          --focus: var(--blue-700);
+        }
         /* When the bar is white (menu open at the top), darken the brand too. */
         .nav.open .brand {
           color: var(--ink);

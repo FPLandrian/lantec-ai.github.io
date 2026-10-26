@@ -620,6 +620,11 @@
           backdrop-filter: saturate(180%) blur(14px);
           --focus: var(--blue-700);
         }
+        /* The skip link appears over this bar. Focusing it scrolls to the
+           top, so the bar behind it is white only while the menu is open. */
+        body:has(.nav.open) .skip-link {
+          --focus: var(--blue-700);
+        }
         .nav.open .brand {
           color: var(--ink);
         }
@@ -753,7 +758,9 @@
         </p>
 
         <p style="margin-top: 34px">
-          <a class="btn btn-primary" href="index.html"><span aria-hidden="true">&larr;</span> Back to lantec.ai</a>
+          <!-- The outer span keeps the arrow and text one flex item, so the
+               gap after the arrow is a plain space, not the button's gap. -->
+          <a class="btn btn-primary" href="index.html"><span><span aria-hidden="true">&larr; </span>Back to lantec.ai</span></a>
         </p>
       </div>
     </main>
