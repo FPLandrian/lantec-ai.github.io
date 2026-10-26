@@ -33,6 +33,7 @@
         --navy-900: #0e1730;
         --navy-800: #14213d;
         --navy-700: #1b2a52;
+        --blue-700: #1d4ed8;
         --blue-600: #2563eb;
         --blue-500: #3b82f6;
         --cyan-500: #06b6d4;
@@ -51,7 +52,7 @@
           0 1px 3px rgba(15, 23, 42, 0.05);
         --shadow-md: 0 10px 30px -12px rgba(15, 23, 42, 0.18);
         --shadow-lg: 0 30px 60px -20px rgba(15, 23, 42, 0.28);
-        --ring: 0 0 0 4px rgba(37, 99, 235, 0.16);
+        --focus: var(--blue-700);
         --radius: 16px;
         --radius-lg: 22px;
         --maxw: 1140px;
@@ -101,10 +102,21 @@
       img {
         max-width: 100%;
       }
+      /* Keyboard focus: a solid outline in --focus, blue on light surfaces
+         (about 6.7:1 on white). On the navy surfaces below, and the skip link
+         that appears over them, it is cyan (5:1 or more; the blue is under
+         3:1 there). The scroll margin stops the ring being cut off at the
+         window's edge when focus scrolls the page. */
       :focus-visible {
-        outline: none;
-        box-shadow: var(--ring);
+        outline: 2px solid var(--focus);
+        outline-offset: 2px;
         border-radius: 8px;
+        scroll-margin-block: 8px;
+      }
+      .skip-link,
+      .page-hero,
+      footer {
+        --focus: var(--cyan-400);
       }
       .wrap {
         width: 100%;
@@ -255,14 +267,6 @@
         min-height: 68px;
         margin-bottom: 68px;
       }
-      /* The global focus ring (blue at 16% opacity) is nearly invisible on
-         navy, so links in the header and footer get a cyan outline. */
-      .page-hero .brand:focus-visible,
-      footer a:focus-visible {
-        outline: 2px solid var(--cyan-400);
-        outline-offset: 2px;
-        box-shadow: none;
-      }
       .page-hero .kicker {
         display: inline-block;
         font-size: 0.78rem;
@@ -354,8 +358,16 @@
       .request-card h2 {
         margin-top: 0;
       }
+      /* The label wraps rather than run past a narrow card (for example with
+         larger text spacing). The taller line-height keeps wrapped lines
+         apart, and the smaller padding keeps a one-line button its height. */
       .request-card .btn {
+        --btn-py: 14px;
         margin-top: 8px;
+        max-width: 100%;
+        white-space: normal;
+        line-height: 1.25;
+        text-align: center;
       }
       .request-card .note {
         margin: 14px 0 0;
