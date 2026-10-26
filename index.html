@@ -45,7 +45,8 @@
         --blue-500: #3b82f6;
 
         /* Brand — accent pair (mirrors the app icon) */
-        --cyan-500: #06b6d4; /* readable on white */
+        --cyan-700: #0e7490; /* cyan text on light surfaces, 5.4:1 on white */
+        --cyan-500: #06b6d4; /* accents and the logo; as text on white only 2.4:1 */
         --cyan-400: #22d3ee; /* bright, for dark bg */
         --coral: #ff512f;
         --pink: #f5365c;
@@ -72,6 +73,8 @@
         --maxw: 1140px;
 
         --grad-brand: linear-gradient(135deg, var(--cyan-500), var(--blue-600));
+        /* Behind white text (buttons, badges, step numbers): 5.3:1 or more. */
+        --grad-button: linear-gradient(135deg, var(--cyan-700), var(--blue-700));
         --grad-accent: linear-gradient(135deg, var(--cyan-400), var(--coral));
       }
 
@@ -141,6 +144,12 @@
       footer {
         --focus: var(--cyan-400);
       }
+      /* Below the sticky nav (69px with its border), keep a focused element
+         clear of it, not just on screen. */
+      main :focus-visible,
+      footer :focus-visible {
+        scroll-margin-top: 76px;
+      }
 
       .wrap {
         width: 100%;
@@ -189,12 +198,13 @@
         text-decoration: none;
       }
       .btn svg {
+        flex-shrink: 0; /* the icon keeps its size when a label wraps */
         width: 18px;
         height: 18px;
       }
 
       .btn-primary {
-        background: var(--grad-brand);
+        background: var(--grad-button);
         color: #fff;
         box-shadow: 0 8px 20px -8px rgba(6, 182, 212, 0.65),
           0 2px 6px rgba(37, 99, 235, 0.35);
@@ -795,7 +805,7 @@
         font-weight: 700;
         letter-spacing: 0.1em;
         text-transform: uppercase;
-        color: var(--cyan-500);
+        color: var(--cyan-700);
         margin-bottom: 12px;
       }
       h2.title {
@@ -1056,10 +1066,12 @@
         letter-spacing: -0.02em;
       }
       .step:nth-child(2) .num {
-        background: linear-gradient(135deg, var(--cyan-500), var(--blue-600));
+        background: var(--grad-button);
       }
+      /* A deeper coral -> pink (red-600 -> rose-600), so the white number
+         is 4.6:1 or more. */
       .step:nth-child(3) .num {
-        background: linear-gradient(135deg, var(--coral), var(--pink));
+        background: linear-gradient(135deg, #dc2626, #e11d48);
       }
       .step h3 {
         font-size: 1.12rem;
@@ -1111,7 +1123,7 @@
         position: absolute;
         top: -12px;
         left: 30px;
-        background: var(--grad-brand);
+        background: var(--grad-button);
         color: #fff;
         font-size: 0.72rem;
         font-weight: 700;
@@ -1181,6 +1193,17 @@
       .plan .btn {
         width: 100%;
         justify-content: center;
+      }
+      /* Pricing and contact buttons: labels wrap rather than run past their
+         card (on the narrowest phones, or with larger text spacing). The
+         18px line box matches the icon, so a one-line button keeps its
+         height. */
+      .plan .btn,
+      .cta-actions .btn {
+        max-width: 100%;
+        white-space: normal;
+        line-height: 18px;
+        text-align: center;
       }
       .btn-outline {
         background: #fff;
@@ -1302,6 +1325,7 @@
         margin-top: 22px;
         font-size: 0.95rem;
         color: #9fb0dc;
+        overflow-wrap: break-word;
       }
       .cta-email a {
         color: #eaf0ff;
@@ -1332,9 +1356,12 @@
         max-width: 300px;
         color: #8090b6;
       }
-      .foot-col h4 {
+      /* h2, not h4, so the page doesn't skip heading levels. The
+         line-height is inherited, as the h4's was, not the h1-h3 rule's. */
+      .foot-col h2 {
         color: #cdd7ee;
         font-size: 0.82rem;
+        line-height: inherit;
         text-transform: uppercase;
         letter-spacing: 0.08em;
         margin: 4px 0 16px;
@@ -1445,6 +1472,10 @@
           border-radius: 16px;
           padding: 12px;
           box-shadow: var(--shadow-lg);
+          /* Never taller than the window (e.g. 200% zoom): it scrolls instead. */
+          max-height: calc(100vh - 84px);
+          max-height: calc(100dvh - 84px);
+          overflow-y: auto;
           opacity: 0;
           transform: translateY(-8px) scale(0.99);
           pointer-events: none;
@@ -1531,6 +1562,10 @@
         .foot-grid > .foot-col:last-child {
           grid-column: 1 / -1;
         }
+        /* Slimmer side padding keeps the contact buttons' labels on one line. */
+        .cta-actions .btn {
+          --btn-px: 14px;
+        }
       }
     </style>
   </head>
@@ -1550,6 +1585,17 @@
           <span>Crew<span class="accent">lytics</span></span>
         </a>
 
+        <!-- The toggle comes before the links, so Tab reaches the open menu next. -->
+        <button
+          class="nav-toggle"
+          id="navToggle"
+          aria-label="Toggle menu"
+          aria-expanded="false"
+          aria-controls="navLinks"
+        >
+          <span></span>
+        </button>
+
         <div class="nav-links" id="navLinks">
           <a class="link" href="#features">Features</a>
           <a class="link" href="#how">How it works</a>
@@ -1560,16 +1606,6 @@
             Get started
           </a>
         </div>
-
-        <button
-          class="nav-toggle"
-          id="navToggle"
-          aria-label="Toggle menu"
-          aria-expanded="false"
-          aria-controls="navLinks"
-        >
-          <span></span>
-        </button>
       </div>
     </nav>
 
@@ -1757,7 +1793,7 @@
       <section class="spotlight">
         <div class="wrap" style="row-gap: 0">
           <div class="txt reveal">
-            <span class="kicker" style="color: #0e7490">Time tracking</span>
+            <span class="kicker">Time tracking</span>
             <h2>No all-day location tracking</h2>
             <p class="body">
               Crewlytics checks a phone's location when someone taps to clock
@@ -2118,7 +2154,7 @@
           </div>
 
           <div class="foot-col">
-            <h4>Product</h4>
+            <h2>Product</h2>
             <a href="#features">Features</a>
             <a href="#how">How it works</a>
             <a href="#pricing">Pricing</a>
@@ -2126,7 +2162,7 @@
           </div>
 
           <div class="foot-col">
-            <h4>Company</h4>
+            <h2>Company</h2>
             <a href="#about">About</a>
             <a href="#contact">Contact</a>
             <a href="privacy.html">LanTec Privacy</a>
@@ -2138,7 +2174,7 @@
           </div>
 
           <div class="foot-col">
-            <h4>Get in touch</h4>
+            <h2>Get in touch</h2>
             <a href="mailto:support.lantec@gmail.com">support.lantec@gmail.com</a>
           </div>
         </div>
@@ -2174,15 +2210,40 @@
       // Mobile menu toggle.
       var toggle = document.getElementById("navToggle");
       var links = document.getElementById("navLinks");
-      toggle.addEventListener("click", function () {
-        var open = nav.classList.toggle("open");
+      var setMenu = function (open) {
+        nav.classList.toggle("open", open);
         toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      };
+      toggle.addEventListener("click", function () {
+        setMenu(!nav.classList.contains("open"));
       });
       // Close the menu after tapping a link.
       links.addEventListener("click", function (e) {
-        if (e.target.closest("a")) {
-          nav.classList.remove("open");
-          toggle.setAttribute("aria-expanded", "false");
+        if (e.target.closest("a")) setMenu(false);
+      });
+      // Escape closes the menu (focus goes back to the toggle if it was in
+      // the nav or nowhere). Focus landing outside the nav closes it, so it
+      // can't cover the focused element; Shift+Tab back into a menu that is
+      // still fading out reopens it.
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && nav.classList.contains("open")) {
+          var refocus =
+            nav.contains(document.activeElement) ||
+            document.activeElement === document.body;
+          setMenu(false);
+          if (refocus) toggle.focus();
+        }
+      });
+      document.addEventListener("focusin", function (e) {
+        var open = nav.classList.contains("open");
+        if (open && !nav.contains(e.target)) {
+          setMenu(false);
+        } else if (
+          !open &&
+          links.contains(e.target) &&
+          getComputedStyle(toggle).display !== "none"
+        ) {
+          setMenu(true);
         }
       });
 

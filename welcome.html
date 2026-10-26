@@ -36,7 +36,8 @@
         --blue-700: #1d4ed8;
         --blue-600: #2563eb;
         --blue-500: #3b82f6;
-        --cyan-500: #06b6d4;
+        --cyan-700: #0e7490; /* cyan text on light surfaces, 5.4:1 on white */
+        --cyan-500: #06b6d4; /* accents and the logo; as text on white only 2.4:1 */
         --cyan-400: #22d3ee;
         --coral: #ff512f;
         --pink: #f5365c;
@@ -57,6 +58,8 @@
         --radius-lg: 22px;
         --maxw: 1140px;
         --grad-brand: linear-gradient(135deg, var(--cyan-500), var(--blue-600));
+        /* Behind white text (buttons, badges, step numbers): 5.3:1 or more. */
+        --grad-button: linear-gradient(135deg, var(--cyan-700), var(--blue-700));
         --grad-accent: linear-gradient(135deg, var(--cyan-400), var(--coral));
       }
 
@@ -119,6 +122,12 @@
       footer {
         --focus: var(--cyan-400);
       }
+      /* Below the sticky nav (69px with its border), keep a focused element
+         clear of it, not just on screen. */
+      main :focus-visible,
+      footer :focus-visible {
+        scroll-margin-top: 76px;
+      }
       .wrap {
         width: 100%;
         max-width: var(--maxw);
@@ -169,7 +178,7 @@
         height: 18px;
       }
       .btn-primary {
-        background: var(--grad-brand);
+        background: var(--grad-button);
         color: #fff;
         box-shadow: 0 8px 20px -8px rgba(6, 182, 212, 0.65),
           0 2px 6px rgba(37, 99, 235, 0.35);
@@ -402,9 +411,12 @@
       /* ============================================================
          Legal content
          ============================================================ */
+      /* Long words (email addresses, links) wrap instead of running past
+         the edge on narrow screens or with larger text spacing. */
       .legal {
         padding: 60px 0 88px;
         background: #fff;
+        overflow-wrap: break-word;
       }
       .legal .wrap {
         max-width: 780px;
@@ -437,7 +449,7 @@
         scroll-margin-top: 90px;
       }
       .legal h2 .n {
-        color: var(--cyan-500);
+        color: var(--cyan-700);
         font-variant-numeric: tabular-nums;
         margin-right: 8px;
       }
@@ -519,9 +531,12 @@
         max-width: 300px;
         color: #8090b6;
       }
-      .foot-col h4 {
+      /* h2, not h4, so the page doesn't skip heading levels. The
+         line-height is inherited, as the h4's was, not the h1-h3 rule's. */
+      .foot-col h2 {
         color: #cdd7ee;
         font-size: 0.82rem;
+        line-height: inherit;
         text-transform: uppercase;
         letter-spacing: 0.08em;
         margin: 4px 0 16px;
@@ -579,6 +594,10 @@
           border-radius: 16px;
           padding: 12px;
           box-shadow: var(--shadow-lg);
+          /* Never taller than the window (e.g. 200% zoom): it scrolls instead. */
+          max-height: calc(100vh - 84px);
+          max-height: calc(100dvh - 84px);
+          overflow-y: auto;
           opacity: 0;
           transform: translateY(-8px) scale(0.99);
           pointer-events: none;
@@ -643,6 +662,13 @@
           padding: 44px 0 64px;
         }
       }
+      @media (max-width: 359px) {
+        /* The support email can't wrap, so on the narrowest phones its
+           column pushed the two-column footer past the screen edge. */
+        .foot-grid > .foot-col:last-child {
+          grid-column: 1 / -1;
+        }
+      }
     </style>
   </head>
   <body>
@@ -656,16 +682,7 @@
           <span>Crew<span class="accent">lytics</span></span>
         </a>
 
-        <div class="nav-links" id="navLinks">
-          <a class="link" href="index.html#features">Features</a>
-          <a class="link" href="index.html#how">How it works</a>
-          <a class="link" href="index.html#about">About</a>
-          <a class="link" href="index.html#contact">Contact</a>
-          <a class="btn btn-primary btn-sm nav-cta" href="index.html#contact">
-            Get in touch
-          </a>
-        </div>
-
+        <!-- The toggle comes before the links, so Tab reaches the open menu next. -->
         <button
           class="nav-toggle"
           id="navToggle"
@@ -675,6 +692,16 @@
         >
           <span></span>
         </button>
+
+        <div class="nav-links" id="navLinks">
+          <a class="link" href="index.html#features">Features</a>
+          <a class="link" href="index.html#how">How it works</a>
+          <a class="link" href="index.html#about">About</a>
+          <a class="link" href="index.html#contact">Contact</a>
+          <a class="btn btn-primary btn-sm nav-cta" href="index.html#contact">
+            Get in touch
+          </a>
+        </div>
       </div>
     </nav>
 
@@ -780,14 +807,14 @@
           </div>
 
           <div class="foot-col">
-            <h4>Product</h4>
+            <h2>Product</h2>
             <a href="index.html#features">Features</a>
             <a href="index.html#how">How it works</a>
             <a href="index.html#features">Voice entry</a>
           </div>
 
           <div class="foot-col">
-            <h4>Company</h4>
+            <h2>Company</h2>
             <a href="index.html#about">About</a>
             <a href="index.html#contact">Contact</a>
             <a href="privacy.html">LanTec Privacy</a>
@@ -799,7 +826,7 @@
           </div>
 
           <div class="foot-col">
-            <h4>Get in touch</h4>
+            <h2>Get in touch</h2>
             <a href="mailto:support.lantec@gmail.com">support.lantec@gmail.com</a>
           </div>
         </div>
@@ -835,14 +862,39 @@
       // Mobile menu toggle.
       var toggle = document.getElementById("navToggle");
       var links = document.getElementById("navLinks");
-      toggle.addEventListener("click", function () {
-        var open = nav.classList.toggle("open");
+      var setMenu = function (open) {
+        nav.classList.toggle("open", open);
         toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      };
+      toggle.addEventListener("click", function () {
+        setMenu(!nav.classList.contains("open"));
       });
       links.addEventListener("click", function (e) {
-        if (e.target.closest("a")) {
-          nav.classList.remove("open");
-          toggle.setAttribute("aria-expanded", "false");
+        if (e.target.closest("a")) setMenu(false);
+      });
+      // Escape closes the menu (focus goes back to the toggle if it was in
+      // the nav or nowhere). Focus landing outside the nav closes it, so it
+      // can't cover the focused element; Shift+Tab back into a menu that is
+      // still fading out reopens it.
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && nav.classList.contains("open")) {
+          var refocus =
+            nav.contains(document.activeElement) ||
+            document.activeElement === document.body;
+          setMenu(false);
+          if (refocus) toggle.focus();
+        }
+      });
+      document.addEventListener("focusin", function (e) {
+        var open = nav.classList.contains("open");
+        if (open && !nav.contains(e.target)) {
+          setMenu(false);
+        } else if (
+          !open &&
+          links.contains(e.target) &&
+          getComputedStyle(toggle).display !== "none"
+        ) {
+          setMenu(true);
         }
       });
     </script>

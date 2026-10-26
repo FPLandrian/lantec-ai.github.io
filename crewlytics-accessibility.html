@@ -36,7 +36,8 @@
         --blue-700: #1d4ed8;
         --blue-600: #2563eb;
         --blue-500: #3b82f6;
-        --cyan-500: #06b6d4;
+        --cyan-700: #0e7490; /* cyan text on light surfaces, 5.4:1 on white */
+        --cyan-500: #06b6d4; /* accents and the logo; as text on white only 2.4:1 */
         --cyan-400: #22d3ee;
         --coral: #ff512f;
         --pink: #f5365c;
@@ -57,6 +58,8 @@
         --radius-lg: 22px;
         --maxw: 1140px;
         --grad-brand: linear-gradient(135deg, var(--cyan-500), var(--blue-600));
+        /* Behind white text (buttons, badges, step numbers): 5.3:1 or more. */
+        --grad-button: linear-gradient(135deg, var(--cyan-700), var(--blue-700));
         --grad-accent: linear-gradient(135deg, var(--cyan-400), var(--coral));
       }
 
@@ -246,9 +249,12 @@
       /* ============================================================
          Legal content
          ============================================================ */
+      /* Long words (email addresses, links) wrap instead of running past
+         the edge on narrow screens or with larger text spacing. */
       .legal {
         padding: 60px 0 88px;
         background: #fff;
+        overflow-wrap: break-word;
       }
       .legal .wrap {
         max-width: 780px;
@@ -281,7 +287,7 @@
         scroll-margin-top: 90px;
       }
       .legal h2 .n {
-        color: var(--cyan-500);
+        color: var(--cyan-700);
         font-variant-numeric: tabular-nums;
         margin-right: 8px;
       }
