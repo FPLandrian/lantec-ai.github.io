@@ -424,7 +424,8 @@
           <strong>In short:</strong> we collect only what the App needs to work —
           your profile, your location when you clock in or out (and, if you are
           an administrator, when you set a jobsite's location to where you are
-          standing), photos, voice notes, and chat messages. We store it
+          standing), photos, voice notes, chat messages, and the documents
+          your company uploads to Crewlytics Financials. We store it
           securely, encrypt it in transit, and
           <strong>never</strong> sell it, show you ads, or track you across other
           apps or the web. You can delete your account and personal data at any
@@ -542,15 +543,18 @@
             audio on our behalf and does not use it to train its own models.
           </li>
           <li>
-            <strong>Microsoft Azure AI document services</strong> — read the
-            documents your company uploads to Crewlytics Financials and pull out
-            values such as the vendor, dates, amounts, and line items. This is
-            automated. Microsoft processes the documents on our behalf and does
-            not use them to train its models. It keeps each reading result for
-            up to 24&nbsp;hours, and we ask it to delete the result as soon as
-            we have saved it. If Microsoft's automated checks flag possible
-            misuse, it may keep the flagged text for a limited time to review
-            it.
+            <strong>Microsoft Azure AI services</strong> — Azure AI Document
+            Intelligence, Azure AI Content Understanding, and Azure OpenAI read
+            the documents your company uploads to Crewlytics Financials and
+            pull out values such as the vendor, dates, amounts, and line items.
+            When you ask for one, Azure OpenAI also drafts a letter disputing an
+            invoice, from that dispute's details. This is automated. Microsoft
+            processes the documents on our behalf and does not use them to
+            train its models. Its document reading services keep each reading
+            result for up to 24&nbsp;hours, and we ask them to delete the result
+            as soon as we have saved it. If Microsoft's automated checks flag
+            possible misuse, it may keep the flagged content for a limited time
+            to review it.
           </li>
           <li>
             <strong>Expo and Google Firebase Cloud Messaging (FCM)</strong> —
