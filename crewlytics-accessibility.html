@@ -405,7 +405,7 @@
       <div class="wrap">
         <span class="kicker">Accessibility</span>
         <h1>Crewlytics Accessibility Statement</h1>
-        <p class="updated">Last updated: August&nbsp;3,&nbsp;2026</p>
+        <p class="updated">Last updated: November&nbsp;17,&nbsp;2026</p>
       </div>
     </header>
 
@@ -423,9 +423,9 @@
         <div class="callout">
           <strong>In short:</strong> Crewlytics is designed and built to target
           <strong>WCAG&nbsp;2.1 Level&nbsp;AA</strong>. Automated accessibility
-          checks run on every code change and block release if they fail. A full
-          manual screen-reader audit is in progress, and we will publish the
-          results here when it is complete. If you hit a barrier, email
+          checks run on every change to the app and block release if they fail.
+          A full manual screen-reader audit is in progress, and we will publish
+          the results here when it is complete. If you hit a barrier, email
           <a href="mailto:support.lantec@gmail.com">support.lantec@gmail.com</a>
           and we will work with you directly.
         </div>
@@ -433,10 +433,14 @@
         <h2><span class="n">1.</span>What this covers</h2>
         <p>
           This statement applies to the <strong>Crewlytics mobile app</strong>
-          for iOS and Android, and to this website at
-          lantec.ai. Crewlytics is used by
-          businesses and their staff; you typically access it through an account
-          created by your employer.
+          for iOS and Android, and to this website at lantec.ai. The
+          <strong>Crewlytics web dashboard</strong>, which you open in a web
+          browser, is not covered by this statement. If something in the
+          dashboard does not work for you, email
+          <a href="mailto:support.lantec@gmail.com">support.lantec@gmail.com</a>
+          and we will work with you directly. Crewlytics is used by businesses
+          and their staff; you typically access it through an account created by
+          your employer.
         </p>
 
         <h2><span class="n">2.</span>Accessibility features</h2>
@@ -466,10 +470,10 @@
             the interface works with any form of color blindness.
           </li>
           <li>
-            <strong>Reduced motion</strong> — the app contains a single
-            animation, and it is disabled automatically when you turn on Reduce
-            Motion. There is no scaling, spinning, or peripheral motion anywhere
-            in the interface.
+            <strong>Reduced motion</strong> — when your device's reduce-motion
+            setting is on, the microphone on the voice-entry screen stops
+            pulsing while you record, and people on the Crew screen move to
+            their new sections without animating.
           </li>
           <li>
             <strong>Spoken status changes</strong> — validation errors, async
@@ -498,9 +502,9 @@
           <li>
             <strong>Automated checks: complete and enforced.</strong> Ten of the
             eleven available React Native accessibility lint rules run at error
-            severity across the entire codebase, plus automated contrast
-            measurement and axe-core checks on the web surface. These block
-            merges — they are not advisory.
+            severity across the app's entire codebase, plus automated contrast
+            measurement of the app's colors. These block merges — they are not
+            advisory.
           </li>
           <li>
             <strong>Manual screen-reader audit: in progress.</strong> Automated
@@ -521,16 +525,19 @@
         <p>Things we know are not done yet:</p>
         <ul>
           <li>
-            <strong>No dark interface.</strong> Crewlytics currently uses a light
-            interface only. A dark theme is planned but not yet available, so the
-            app cannot yet help users with light sensitivity in that way.
-          </li>
-          <li>
             <strong>Accessibility hints are not universal.</strong> Controls all
             have accessible names, roles, and states; supplementary hints — the
             longer "double tap to…" descriptions — are present in many places but
             not everywhere. Hints are optional under WCAG, and we are adding them
             as we revisit each screen.
+          </li>
+          <li>
+            <strong>Some animations still play.</strong> When a chat message
+            arrives while the app is open, a banner slides down from the top of
+            the screen even when your device's reduce-motion setting is on. On
+            iPhone, several pop-up screens, such as pickers, the clock-out
+            confirmation, and the email sign-in sheet, also still slide up from
+            the bottom when Reduce Motion is on.
           </li>
           <li>
             <strong>iPad layout.</strong> The current iOS release is built for
@@ -553,8 +560,8 @@
           want to know. Email
           <a href="mailto:support.lantec@gmail.com">support.lantec@gmail.com</a>
           with what you were trying to do, the device and assistive technology
-          you were using, and what happened. We aim to respond within a few
-          business days.
+          you were using, and what happened. We reply within 2 business
+          days.
         </p>
         <p>
           If you need an accommodation to complete a task in the app while we fix
