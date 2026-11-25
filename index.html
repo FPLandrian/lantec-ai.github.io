@@ -1941,7 +1941,7 @@
 
         The Stripe Payment Link. Search this file for CHECKOUT_URL
         (in the script at the bottom) and paste it in. Until it is
-        set, every "Start your subscription" button falls back to
+        set, every "Start your free trial" button falls back to
         the support email automatically — the page is never broken,
         it just can't take money yet.
 
@@ -1957,7 +1957,8 @@
             <span class="kicker">Pricing</span>
             <h2 class="title">One plan that grows with your crew</h2>
             <p>
-              $49 a month covers your first 10 users. <strong>Every user
+              <strong>30-day free trial, no card needed.</strong> $49 a month
+              covers your first 10 users. <strong>Every user
               beyond 10 adds $3.29&ndash;$4.46 a month</strong>, prorated
               automatically &mdash; and removing someone lowers your next
               bill. No tiers to pick: one plan, plus an optional Financials
@@ -2017,10 +2018,14 @@
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 12.5 5 5L20 6.5"/></svg>
                   Email support from the people who built it
                 </li>
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 12.5 5 5L20 6.5"/></svg>
+                  Financials included in the trial
+                </li>
               </ul>
 
               <a class="btn btn-primary" data-checkout href="#contact">
-                Start your subscription
+                Start your free trial
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
               </a>
               <p class="plan-after">
@@ -2146,6 +2151,15 @@
                 <a href="crewlytics-terms.html">Subscription Terms</a>.
               </span>
             </div>
+            <!-- Terms section 7, word for word. Change both together. -->
+            <div>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+              <span>
+                <strong>Financials money-back window.</strong> Within 30 days
+                of your first Financials payment, you may ask for a refund of
+                up to one month's fee. Your add-on ends when we refund it.
+              </span>
+            </div>
           </div>
         </div>
       </section>
@@ -2187,7 +2201,7 @@
             </p>
             <div class="cta-actions">
               <a class="btn btn-primary" data-checkout href="#pricing">
-                Start your subscription
+                Start your free trial
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
               </a>
               <a class="btn btn-ghost" href="mailto:support.lantec@gmail.com">
@@ -2346,7 +2360,7 @@
          tenant from those two values, so a link without them will
          take the money but not create the account.
 
-         While this is empty, every "Start your subscription"
+         While this is empty, every "Start your free trial"
          button quietly falls back to the support email, so the
          page is safe to publish before the link exists.
       ─────────────────────────────────────────────────────────── */
