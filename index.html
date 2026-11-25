@@ -1119,6 +1119,15 @@
         box-shadow: var(--shadow-md);
         position: relative;
       }
+      /* An add-on, not a third plan: it spans the grid under both plans. */
+      .plan-addon {
+        grid-column: 1 / -1;
+      }
+      /* No button above it here, so it sits with the list, left-aligned. */
+      .plan-addon .plan-after {
+        margin-top: 0;
+        text-align: left;
+      }
       .plan-badge {
         position: absolute;
         top: -12px;
@@ -1951,7 +1960,8 @@
               $49 a month covers your first 10 users. <strong>Every user
               beyond 10 adds $3.29&ndash;$4.46 a month</strong>, prorated
               automatically &mdash; and removing someone lowers your next
-              bill. No plans to pick, no upgrades to remember.
+              bill. No tiers to pick: one plan, plus an optional Financials
+              add-on.
             </p>
           </div>
 
@@ -2053,6 +2063,56 @@
                 Talk to our team
               </a>
               <p class="plan-after">No pressure, and no sales script.</p>
+            </article>
+
+            <!--
+              Financials add-on. The numbers ($149 a month, 1,000 pages a
+              month included, $0.10 a page after that, reading stops at 5,000
+              pages a month) mirror Terms section 4 (crewlytics-terms.html)
+              and the app's FINANCIALS_MONTHLY_CENTS, PAGE_ALLOWANCE_PER_MONTH,
+              PAGE_OVERAGE_CENTS and PAGE_SAFETY_HOLD_PER_MONTH. Change all
+              three places together.
+              Information only: no button, no link, no data-checkout, no
+              data-fill. The "Included in your 30-day free trial" line is true
+              only while the live Payment Link starts the 30-day trial (the
+              go-live of 2026-11-24, step C8). If that link ever goes back to
+              a paid checkout, take the line out.
+              MERGE GATE: do not merge until PROD rows 7, 8 and 10d of
+              prod-readiness-2026-11-16 are done and PROD Billing shows Add
+              Financials to an owner. The trial line also needs the trial
+              Payment Link live on PROD.
+            -->
+            <article class="plan plan-addon reveal d2">
+              <div>
+                <h3 class="plan-name">Crewlytics Financials</h3>
+                <p>An optional add-on.</p>
+              </div>
+
+              <div class="plan-price">
+                <span class="amt">$149</span>
+                <span class="per">per month</span>
+              </div>
+              <p class="plan-price-note">
+                1,000 pages a month included, then $0.10 a page, up to 5,000
+                pages a month
+              </p>
+              <p class="plan-price-note">Included in your 30-day free trial</p>
+
+              <ul class="plan-feats">
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 12.5 5 5L20 6.5"/></svg>
+                  Each job's cost to date against its budget
+                </li>
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 12.5 5 5L20 6.5"/></svg>
+                  Reads your vendor invoices, credit memos and rental paperwork
+                </li>
+              </ul>
+
+              <p class="plan-after">
+                Your company's owner adds it on the Billing page of the web
+                dashboard.
+              </p>
             </article>
           </div>
 
