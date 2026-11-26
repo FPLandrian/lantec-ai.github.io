@@ -1231,6 +1231,13 @@
         color: var(--muted);
         font-size: 0.86rem;
       }
+      /* A link inside a sentence is underlined, not told apart by its color
+         alone (WCAG 1.4.1), as on the welcome page. */
+      .plan-after a {
+        font-weight: 600;
+        text-decoration: underline;
+        text-underline-offset: 2px;
+      }
       .pricing-assure {
         margin: 40px auto 0;
         max-width: 880px;
@@ -1467,7 +1474,11 @@
         }
       }
 
-      @media (max-width: 720px) {
+      /* The menu folds into the toggle wherever its full row of links would
+         not fit on one line (from 930px, measured with "Financials sign-in").
+         It folded only at 720px before, so from 721px to about 900px the
+         labels wrapped onto two or three lines and the page scrolled sideways. */
+      @media (max-width: 960px) {
         .nav-links {
           position: absolute;
           top: calc(100% + 8px);
@@ -1611,11 +1622,15 @@
           <a class="link" href="#pricing">Pricing</a>
           <a class="link" href="#about">About</a>
           <a class="link" href="#contact">Contact</a>
+          <!-- Named for what it opens. A bare "Sign in" read as signing in to
+               this site, and nothing said Financials lives on the dashboard
+               (with the Billing page). The spoken name starts with the shown
+               words (WCAG 2.5.3). -->
           <a
             class="link"
             href="https://app.lantec.ai/dashboard/sign-in"
-            aria-label="Sign in to the Crewlytics web dashboard"
-            >Sign in</a
+            aria-label="Financials sign-in, on the Crewlytics web dashboard"
+            >Financials sign-in</a
           >
           <a class="btn btn-primary btn-sm nav-cta" href="#pricing">
             Get started
@@ -2115,8 +2130,9 @@
               </ul>
 
               <p class="plan-after">
-                Your company's owner adds it on the Billing page of the web
-                dashboard.
+                Used on the web dashboard at
+                <a href="https://app.lantec.ai/dashboard/sign-in">app.lantec.ai</a>.
+                Your company's owner adds it from the dashboard's Billing page.
               </p>
             </article>
           </div>
@@ -2239,6 +2255,9 @@
             <a href="#how">How it works</a>
             <a href="#pricing">Pricing</a>
             <a href="#features">Voice entry</a>
+            <a href="https://app.lantec.ai/dashboard/sign-in"
+              >Financials &amp; billing: app.lantec.ai</a
+            >
           </div>
 
           <div class="foot-col">
